@@ -1,5 +1,5 @@
 def demanar_opcio():
-    opcio = int(input("Benvingut al menú, quina dificultat vols agafar?\n1. Fàcil\n2. Mitjà\n3. Difícil"))
+    opcio = int(input("Benvingut al menú, quina dificultat vols agafar?\n1. Fàcil\n2. Mitjà\n3. Difícil\n"))
     match opcio:
         case 1:
             print(f"Has triat la opció: {opcio}. Fàcil")
