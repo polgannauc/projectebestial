@@ -14,5 +14,11 @@ def demanar_opcio():
             return opcio
 
 
-while(demanar_opcio() not in [1, 2, 3]):
-    demanar_opcio()
+def main():
+    while demanar_opcio() not in [1, 2, 3]:
+        demanar_opcio()
+
+
+
+if __name__ == "__main__":
+    main()
