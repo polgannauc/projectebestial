@@ -19,7 +19,7 @@ def foto():
 
 
 def main():
-    animal()
+    foto()
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,5 @@
 # Generació del tauler (mapa) i la col·locació dels elements
 # També gestionar les regles de cada element
-
 import random
 import elements
 import keyboard
