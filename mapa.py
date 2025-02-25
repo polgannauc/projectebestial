@@ -3,6 +3,7 @@
 
 import random
 import elements
+import keyboard
 
 def imprimir_mapa(fila, columna, llista_elements):
     columna+=1
@@ -22,3 +23,13 @@ def imprimir_mapa(fila, columna, llista_elements):
 elements = ["X ", ". ","A "]
         
 imprimir_mapa(5,5,elements)
+
+
+
+
+def main():
+    imprimir_mapa()
+
+
+if __name__ == "__main__":
+    main()
