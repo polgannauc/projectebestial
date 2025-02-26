@@ -25,7 +25,10 @@ def foto():
     jugador['xp'] += animal['exp']
 
 
-
+# Funció per generar un diccionari que conté com a clau la A (d'animal) i com a valor una llista de tuples
+# amb les posicions generades a l'atzar.
+# S'ha de tenir en compte l'amplada del mapa, i més endvant, si fem un diccionari per cada element o un amb tots
+# També tenir en compte que no es poden solapar les posicions dels elements. 
 def pos_elements(var_nivell):
     dicc_elements = {} 
     match var_nivell:
