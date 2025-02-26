@@ -1,3 +1,5 @@
+# S'implementen les regles del moviment de l'explorador
+
 import keyboard
 import  ppal
 

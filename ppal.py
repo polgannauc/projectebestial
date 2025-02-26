@@ -1,3 +1,7 @@
+# En aquest part és on s'inicia el joc i mostra el resultat final
+## Entenc que aquest mòdul és on es criden la resta de funcions dels altres mò
+
+
 import keyboard
 import mapa
 
