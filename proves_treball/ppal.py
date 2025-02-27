@@ -2,6 +2,8 @@ import random
 import var_globals
 import mapa
 
+gameplay = False
+
 def main():
     print("Benvingut/uda al nostre joc")
     print("\nQuin nivell vols triar?")
@@ -14,10 +16,13 @@ def main():
     match level:
         case 1:
             print("\nHas escollit el nivell 1: Piece of cake!")
+            mapa.main()
         case 2:
             print("\nHas escollit el nivell 2: Let's rock!")
+            mapa.imprimir_mapa(2)
         case 3:
             print("\nHas escollit el nivell 3: Come get some!")
+            mapa.imprimir_mapa(3)
     
     amplada_mapa = var_globals.mida_mapa(level)
     print(amplada_mapa)

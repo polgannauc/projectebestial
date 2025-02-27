@@ -2,10 +2,10 @@
 
 import keyboard
 import time
+import ppal
 
 
 def desplaçament(mida,x,y):
-    global gameplay
     if keyboard.is_pressed("w"):
         x -= 1
         if x== -1:
@@ -23,7 +23,7 @@ def desplaçament(mida,x,y):
         if y==mida:
             y=0
     elif keyboard.is_pressed("q"):
-        gameplay = False
+        ppal.gameplay = False
     return x,y
 
 

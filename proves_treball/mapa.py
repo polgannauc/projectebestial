@@ -2,9 +2,11 @@
 import var_globals
 import time
 import moviments
+import ppal
 
 
 def imprimir_mapa(mida,diccionari,x,y):
+    ppal.gameplay = True
     for i in range(mida):
         print("+---" *mida+ "+")
         for j in range(mida):
@@ -31,11 +33,10 @@ def main():
 
     jugador_x = 2
     jugador_y = 2
-    gameplay = True
 
     imprimir_mapa(amplada,dic_posicions,jugador_x,jugador_y)
 
-    while gameplay:
+    while ppal.gameplay:
         old_x,old_y = jugador_x, jugador_y
         jugador_x, jugador_y = moviments.desplaçament(amplada,jugador_x,jugador_y)
 

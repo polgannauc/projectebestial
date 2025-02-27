@@ -1,7 +1,7 @@
 # S'implementen les regles del moviment de l'explorador
 
 import keyboard
-import  ppal
+import ppal
 
 #mapa.jugador_x, mapa.jugador_y
 #opcio = keyboard.is_pressed()
