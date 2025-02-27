@@ -26,38 +26,3 @@ def desplaçament(mida,x,y):
         ppal.gameplay = False
         print("Sortint del joc...")
     return x,y
-
-
-# def imprimir_mapa(mida,x,y):
-#     for i in range(mida):
-#         print("+---" *mida+ "+")
-#         for j in range(mida):
-#             if j == mida - 1: 
-#                 if i == x and j == y:
-#                     print("| E ", end="")
-#                 else:
-#                     print("|   ", end="")
-#                 print("|") 
-#             else:
-#                 if i == x and j == y:
-#                     print("| E ", end="")
-#                 else:
-#                     print("|   ", end="")
-#     print("+---" *mida+ "+")
-
-
-# jugador_x = 2
-# jugador_y = 2
-# amplada_mapa = 5  
-# gameplay = True
-
-# imprimir_mapa(amplada_mapa,jugador_x,jugador_y)
-
-# while gameplay:
-#     old_x,old_y = jugador_x, jugador_y
-#     jugador_x, jugador_y = desplaçament(amplada_mapa,jugador_x,jugador_y)
-
-#     if jugador_x!=old_x or jugador_y!=old_y:
-#         imprimir_mapa(amplada_mapa,jugador_x,jugador_y)
-#         time.sleep(0.2)
-    

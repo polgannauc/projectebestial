@@ -16,13 +16,12 @@
 
 import var_globals
 import random
-animal = {'vida' : 10, 'exp' : 5}
+
+animal = {'hp' : 10, 'xp' : 5}
+x_animal = 1
+y_animal = 1
 jugador = {'hp' : 100, 'xp' : 0}
 
-
-def foto():
-    jugador['hp'] += animal['vida']
-    jugador['xp'] += animal['exp']
 
 
 # Funció per generar un diccionari que conté com a clau la A (d'animal) i com a valor una llista de tuples
@@ -30,6 +29,8 @@ def foto():
 # S'ha de tenir en compte l'amplada del mapa, i més endvant, si fem un diccionari per cada element o un amb tots
 # També tenir en compte que no es poden solapar les posicions dels elements. 
 def pos_elements(var_nivell):
+    global x_animal
+    global y_animal
     dicc_elements = {} 
     match var_nivell:
         case 1:
@@ -46,16 +47,8 @@ animals = pos_elements(1)
 print(animals)
 
 
-
-
-
-
-
-
-
-
 def main():
-    foto()
+    pos_elements(1)
 
 if __name__ == "__main__":
     main()
