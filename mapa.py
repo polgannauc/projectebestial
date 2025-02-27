@@ -1,32 +1,48 @@
-# Generació del tauler (mapa) i la col·locació dels elements
-# També gestionar les regles de cada element
-import random
-import elements
-import keyboard
+# Aquest serà el mòdul pel mapa
 import var_globals
+import time
+import moviments
+import ppal
 
-def imprimir_mapa(fila, columna, llista_elements):
-    columna+=1
-    for i in range(fila):
-        print("+---" * (columna-1) + "+")
-        for j in range(columna):
-            if j == columna-1:
-                print("|")
-            else:
-                if i == var_globals.x_jugador and j == var_globals.y_jugador:
-                    print(f"| E ", end ="")
+
+def imprimir_mapa(mida,diccionari,x,y):
+    ppal.gameplay = True
+    for i in range(mida):
+        print("+---" *mida+ "+")
+        for j in range(mida):
+            if j == mida - 1: 
+                if i == x and j == y:
+                    print("| E ", end="")
                 else:
-                    print(f"| {llista_elements[random.randint(0,len(llista_elements)-1)]} ", end ="")
-    print("+---" * (columna-1) + "+")
+                    print("|   ", end="")
+                print("|") 
+            else:
+                if i == x and j == y:
+                    print("| E ", end="")
+                else:
+                    print("|   ", end="")
+    print("+---" *mida+ "+")
 
-# def mapa_ocult()  Funció per mostrar el mapa ocult i, a mesura que el jugador es mou, es va revelant el mapa
-# La visió també anirà aqui??
 
-elements = ["A","T","L","B","R","C"]
 
 def main():
-    imprimir_mapa(5,5,elements)
+    ll_elements=var_globals.ll_elements
+    amplada = var_globals.mida_mapa(1)
+    dic_q_elements=var_globals.quantitat_elements(1)
+    dic_posicions = var_globals.generar_posicions(amplada,ll_elements,dic_q_elements)
 
+    jugador_x = 2
+    jugador_y = 2
+
+    imprimir_mapa(amplada,dic_posicions,jugador_x,jugador_y)
+
+    while ppal.gameplay:
+        old_x,old_y = jugador_x, jugador_y
+        jugador_x, jugador_y = moviments.desplaçament(amplada,jugador_x,jugador_y)
+
+        if jugador_x!=old_x or jugador_y!=old_y:
+            imprimir_mapa(amplada,dic_posicions,jugador_x,jugador_y)
+            time.sleep(0.2)
 
 if __name__ == "__main__":
     main()

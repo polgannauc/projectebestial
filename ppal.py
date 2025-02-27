@@ -1,38 +1,35 @@
-# En aquest part és on s'inicia el joc i mostra el resultat final
-## Entenc que aquest mòdul és on es criden la resta de funcions dels altres mò
-
-
-import keyboard
+import random
+import var_globals
 import mapa
 
 gameplay = False
 
-def demanar_opcio():
-    global gameplay
-    opcio = int(input("Benvingut al menú, quina dificultat vols agafar?\n1. Fàcil\n2. Mitjà\n3. Difícil\n"))
-    match opcio:
-        case 1:
-            print(f"Has triat la opció: {opcio}. Fàcil: Piece of cake!")
-            gameplay = True
-            mapa.imprimir_mapa(5,5,mapa.elements)
-            return opcio
-        case 2:
-            print(f"Has triat la opció: {opcio}. Mitjà: Let's rock!")
-            gameplay = True
-            mapa.imprimir_mapa(10,10,mapa.elements)
-            return opcio
-        case 3:
-            print(f"Has triat la opció: {opcio}. Difícil: Come get some!")
-            gameplay = True
-            mapa.imprimir_mapa(15,15,mapa.elements)
-            return opcio
-        case _:
-            return opcio
-
-
 def main():
-    while demanar_opcio() not in [1, 2, 3]:
-        demanar_opcio()
+    print("Benvingut/uda al nostre joc")
+    print("\nQuin nivell vols triar?")
+    print("\n\tNivell 1: Piece of cake!")
+    print("\n\tNivell 2: Let's rock!")
+    print("\n\tNivell 3: Come get some!")
+    level = None
+    while level not in [1,2,3]:
+        level = int(input("Escull nivell: "))
+    match level:
+        case 1:
+            print("\nHas escollit el nivell 1: Piece of cake!")
+            mapa.main()
+        case 2:
+            print("\nHas escollit el nivell 2: Let's rock!")
+            mapa.imprimir_mapa(2)
+        case 3:
+            print("\nHas escollit el nivell 3: Come get some!")
+            mapa.imprimir_mapa(3)
+    
+    amplada_mapa = var_globals.mida_mapa(level)
+    print(amplada_mapa)
+    #mapa.imprimir_mapa(amplada_mapa,amplada_mapa)
+    
+
+
 
 if __name__ == "__main__":
     main()

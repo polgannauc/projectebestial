@@ -24,6 +24,7 @@ def desplaçament(mida,x,y):
             y=0
     elif keyboard.is_pressed("q"):
         ppal.gameplay = False
+        print("Sortint del joc...")
     return x,y
 
 
