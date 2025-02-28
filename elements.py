@@ -16,8 +16,6 @@ import random
 # Suma punts d’energia per cada animal fotografiat (segons el nivell) i es guarda a la llista d’animals fotografiats.
 # Un cop la casella ha estat visitada s’ha de mostrar el símbol de la casella destapada.
 
-jugador = {'hp' : 100, 'xp' : 0}
-animal = {'hp' : 10, 'xp' : 5}
 #x_animal = 1
 #y_animal = 1
  

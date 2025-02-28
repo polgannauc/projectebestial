@@ -22,6 +22,6 @@ def desplaçament(mida,x,y):
         if y == mida:
             y = 0
     elif keyboard.is_pressed("q"):
-        var_globals.ppal.gameplay = False
+        var_globals.gameplay = False
         print("Sortint del joc...\nGràcies per jugar!!")
     return x,y

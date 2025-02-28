@@ -2,10 +2,14 @@
 ## Exemple: amplada del mapa o energia inicial
 ## Altres variables que podem posar, com les posicions de l'explorador i dels element
 import random
-import ppal
-import mapa
-import moviments
-import elements
+
+gameplay = False
+level = 0
+jugador_x = 2
+jugador_y = 2
+jugador = {'hp' : 100, 'xp' : 0}
+animal = {'hp' : 10, 'xp' : 5}
+
 
 # Funció per escollir la mida del mapa segons el nivell de dificultat:
 def mida_mapa(var_nivell):
@@ -18,8 +22,6 @@ def mida_mapa(var_nivell):
         case 3:
             mida = 15
     return mida
-
-
 
 # Funció per generar la visibilitat segons el nivell de dificultat
 # Funció per generar la visibilitat segons el nivell de dificultat
