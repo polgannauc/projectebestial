@@ -22,32 +22,6 @@ def mapa_parametres(var_nivell):
     return var_globals.mida, var_globals.entitats, var_globals.jugador_vida
 
 
-
-
-# Funció per generar la visibilitat segons el nivell de dificultat
-# Genera una llista amb les coordenades que pot veure l'explorador
-# Paràmetres: mida que fa el mapa i les coordenades del jugador
-
-def generar_visio(mida, pos_jugador):
-    ll_tuples = []
-    direccions = []
-    match mida:
-        case 5:
-            direccions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, 1), (-1, -1), (1, 1), (1, -1), (-2, 0), (2, 0), (0, 2), (0, -2)]
-        case 10:
-            direccions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, 1), (-1, -1), (1, 1), (1, -1)]
-        case 15:
-            direccions = [(-1, 0), (1, 0), (0, -1), (0, 1)]    
-    x, y = pos_jugador[0], pos_jugador[1]
-    for dx, dy in direccions:
-        nou_dx = (x + dx) % mida
-        nou_dy = (y + dy) % mida
-        ll_tuples.append((nou_dx, nou_dy))
-    return(ll_tuples)
-
-
-
-
 def imprimir_mapa(mida,diccionari,x,y):
     matriu = []
     var_globals.gameplay = True
@@ -70,10 +44,10 @@ def imprimir_mapa(mida,diccionari,x,y):
 
 
 def main():
+    ll_elements = var_globals.ll_elements
     mapa_parametres(var_globals.level)
-    dic_posicions = elements.generar_posicions(var_globals.mida,var_globals.ll_elements,var_globals.entitats)
+    dic_posicions = elements.generar_posicions(var_globals.mida,ll_elements,var_globals.entitats)
 
-    print(dic_posicions)
     imprimir_mapa(var_globals.mida,dic_posicions,var_globals.jugador_x,var_globals.jugador_y)
 
     while var_globals.gameplay:
