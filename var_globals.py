@@ -49,9 +49,4 @@ def generar_posicions(mida,ll,diccionari):
 
 
 #Llista amb tots els elements
-ll_elements = ["E","A","T","R","L","B","C"]
-
-
-
-
-    
+ll_elements = ["E","A","T","R","L","B","C"] 

@@ -34,7 +34,6 @@ def main():
     #amplada_mapa = var_globals.mida_mapa(nivell)
     #print(amplada_mapa)
     #mapa.imprimir_mapa(amplada_mapa,amplada_mapa)
-    
 
 
 if __name__ == "__main__":
