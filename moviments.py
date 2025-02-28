@@ -1,6 +1,5 @@
 # S'implementen les regles del moviment de l'explorador
 
-#import time
 import keyboard
 import var_globals
 
@@ -24,5 +23,5 @@ def desplaçament(mida,x,y):
             y = 0
     elif keyboard.is_pressed("q"):
         var_globals.ppal.gameplay = False
-        print("Sortint del joc...")
+        print("Sortint del joc...\nGràcies per jugar!!")
     return x,y
