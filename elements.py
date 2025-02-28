@@ -20,7 +20,7 @@ def generar_posicions(mida, ll, diccionari):
         dic_pos[i]=ll_aux
     return dic_pos
 
-def elements():
-    for clau, valors in dic_pos:
-        for valor in valors:
-            print(clau)
+# def elements(dic_pos):
+#     for clau, valors in dic_pos:
+#         for valor in valors:
+#             print(clau)

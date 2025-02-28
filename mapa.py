@@ -22,23 +22,51 @@ def mapa_parametres(var_nivell):
     return var_globals.mida, var_globals.entitats, var_globals.jugador_vida
 
 
+# Funció per generar la visibilitat segons el nivell de dificultat
+# Genera una llista amb les coordenades que pot veure l'explorador
+# Paràmetres: mida que fa el mapa i les coordenades del jugador
+def generar_visió(mida,pos_jugador):
+    ll_tuples = []
+    direccions = []
+    match mida:
+        case 5:
+            direccions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, 1), (-1, -1), (1, 1), (1, -1), (-2, 0), (2, 0), (0, 2), (0, -2)]
+        case 10:
+            direccions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, 1), (-1, -1), (1, 1), (1, -1)]
+        case 15:
+            direccions = [(-1, 0), (1, 0), (0, -1), (0, 1)]    
+    x,y = pos_jugador[0], pos_jugador[1]
+    for dx, dy in direccions:
+        nou_dx = (x+dx) % mida
+        nou_dy = (y+dy) % mida
+        ll_tuples.append((nou_dx,nou_dy))
+    return(ll_tuples)
+
+
 def imprimir_mapa(mida,diccionari,x,y):
-    matriu = []
     var_globals.gameplay = True
     for i in range(mida):
         print("+---" *mida+ "+")
         for j in range(mida):
             if j == mida - 1: 
                 if i == x and j == y:
-                    print("| E ", end="")
+                    print("| E ", end = "")
                 else:
-                    print(f"| · ", end="")
+                    for clau, valors in diccionari.items():
+                        for valor in valors:
+                            if (i, j) == valor:
+                                print(f"| {clau} ", end = "")
+                print(f"| · ", end = "")
                 print("|") 
             else:
                 if i == x and j == y:
-                    print("| E ", end="")
+                    print("| E ", end = "")
                 else:
-                    print(f"| · ", end="")
+                    for clau, valors in diccionari.items():
+                        for valor in valors:
+                            if (i, j) == valor:
+                                print(f"| {clau} ", end = "")                    
+                print(f"| · ", end = "")
     print("+---" *mida+ "+")
     print(f"La teva salut és de: {var_globals.jugador_vida} punts de vida.\n")
 
@@ -46,17 +74,16 @@ def imprimir_mapa(mida,diccionari,x,y):
 def main():
     ll_elements = var_globals.ll_elements
     mapa_parametres(var_globals.level)
-    dic_posicions = elements.generar_posicions(var_globals.mida,ll_elements,var_globals.entitats)
-
-    imprimir_mapa(var_globals.mida,dic_posicions,var_globals.jugador_x,var_globals.jugador_y)
+    dic_posicions = elements.generar_posicions(var_globals.mida, ll_elements, var_globals.entitats)
+    imprimir_mapa(var_globals.mida,dic_posicions, var_globals.jugador_x, var_globals.jugador_y)
 
     while var_globals.gameplay:
-        old_x,old_y = var_globals.jugador_x, var_globals.jugador_y
-        var_globals.jugador_x, var_globals.jugador_y = moviments.desplaçament(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
+        old_x, old_y = var_globals.jugador_x, var_globals.jugador_y
+        var_globals.jugador_x, var_globals.jugador_y = moviments.desplaçament(var_globals.mida, var_globals.jugador_x, var_globals.jugador_y)
 
         if var_globals.jugador_x != old_x or var_globals.jugador_y != old_y:
-            imprimir_mapa(var_globals.mida,dic_posicions,var_globals.jugador_x,var_globals.jugador_y)
-            time.sleep(0.2)
+            imprimir_mapa(var_globals.mida, dic_posicions, var_globals.jugador_x, var_globals.jugador_y)
+            time.sleep(0.4)
 
 if __name__ == "__main__":
     main()
