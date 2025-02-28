@@ -1,16 +1,12 @@
 # Aquest serà el mòdul pel mapa
 import var_globals
-import time
-import moviments
-import ppal
-import elements
 
 jugador_x = 2
 jugador_y = 2
 
 def imprimir_mapa(mida,diccionari,x,y):
     matriu = []
-    ppal.gameplay = True
+    var_globals.ppal.gameplay = True
     for i in range(mida):
         print("+---" *mida+ "+")
         for j in range(mida):
@@ -39,18 +35,18 @@ def main():
 
     imprimir_mapa(amplada,dic_posicions,jugador_x,jugador_y)
 
-    print(f"La teva salut és de: {elements.jugador['hp']}")
+    print(f"La teva salut és de: {var_globals.elements.jugador['hp']}")
 
-    while ppal.gameplay:
+    while var_globals.ppal.gameplay:
         old_x,old_y = jugador_x, jugador_y
-        jugador_x, jugador_y = moviments.desplaçament(amplada,jugador_x,jugador_y)
+        jugador_x, jugador_y = var_globals.moviments.desplaçament(amplada,jugador_x,jugador_y)
 
         if jugador_x!=old_x or jugador_y!=old_y:
             imprimir_mapa(amplada,dic_posicions,jugador_x,jugador_y)
-            time.sleep(0.2)
+            var_globals.time.sleep(0.2)
 
-        if jugador_x == elements.x_animal and jugador_y == elements.y_animal:
-            elements.jugador['xp'] += elements.animal['xp']
+        if jugador_x == var_globals.elements.x_animal and jugador_y == var_globals.elements.y_animal:
+            var_globals.elements.jugador['xp'] += var_globals.elements.animal['xp']
 
 if __name__ == "__main__":
     main()

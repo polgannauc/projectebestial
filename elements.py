@@ -1,3 +1,4 @@
+import var_globals
 # On es troben definits tots el elements
 
 ## Llista d'elements:
@@ -14,8 +15,6 @@
 # Suma punts d’energia per cada animal fotografiat (segons el nivell) i es guarda a la llista d’animals fotografiats.
 # Un cop la casella ha estat visitada s’ha de mostrar el símbol de la casella destapada.
 
-import var_globals
-import random
 
 animal = {'hp' : 10, 'xp' : 5}
 x_animal = 1
@@ -37,13 +36,13 @@ def pos_elements(var_nivell):
             q_animals = 2
             ll = []
             for i in range(q_animals):
-                x_animal= random.randint(0,var_globals.amplada_mapa-1)
-                y_animal= random.randint(0,var_globals.amplada_mapa-1)
-                ll.append((x_animal,y_animal))
-    dicc_elements["A"]=ll
+                x_animal = var_globals.random.randint(0, var_globals.amplada_mapa - 1)
+                y_animal = var_globals.random.randint(0, var_globals.amplada_mapa - 1)
+                ll.append((x_animal, y_animal))
+    dicc_elements['A'] = ll
     return dicc_elements
 
-animals = pos_elements(1)
+animals = pos_elements(var_globals.ppal.get_level())
 print(animals)
 
 

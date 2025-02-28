@@ -1,6 +1,4 @@
-import random
 import var_globals
-import mapa
 
 gameplay = False
 level = 0
@@ -25,13 +23,13 @@ def main():
     match nivell:
         case 1:
             print("\nHas escollit el nivell 1: Piece of cake!")
-            mapa.main()
+            var_globals.mapa.main()
         case 2:
             print("\nHas escollit el nivell 2: Let's rock!")
-            mapa.main()
+            var_globals.mapa.main()
         case 3:
             print("\nHas escollit el nivell 3: Come get some!")
-            mapa.main()
+            var_globals.mapa.main()
     
     #amplada_mapa = var_globals.mida_mapa(nivell)
     #print(amplada_mapa)

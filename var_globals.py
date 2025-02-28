@@ -1,8 +1,11 @@
 # En aquest mòdul és on aniran les variables globals
 ## Exemple: amplada del mapa o energia inicial
 ## Altres variables que podem posar, com les posicions de l'explorador i dels element
-
 import random
+import ppal
+import mapa
+import moviments
+import elements
 
 # Funció per escollir la mida del mapa segons el nivell de dificultat:
 def mida_mapa(var_nivell):
