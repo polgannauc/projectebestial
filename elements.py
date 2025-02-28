@@ -43,9 +43,3 @@ def generar_posicions(mida,ll,diccionari):
             ll_aux.append(combinacions_possibles.pop())
         dic_pos[i]=ll_aux
     return dic_pos
-
-#animals = pos_elements(var_globals.ppal.get_level())
-#print(animals)
-
-if __name__ == "__main__":
-        pos_elements(var_globals.ppal.get_level())
