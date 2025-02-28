@@ -45,28 +45,27 @@ def generar_visió(mida,pos_jugador):
 
 def imprimir_mapa(mida,diccionari,x,y):
     var_globals.gameplay = True
+    claus = False
     for i in range(mida):
         print("+---" *mida+ "+")
         for j in range(mida):
-            if j == mida - 1: 
-                if i == x and j == y:
-                    print("| E ", end = "")
-                else:
-                    for clau, valors in diccionari.items():
-                        for valor in valors:
-                            if (i, j) == valor:
-                                print(f"| {clau} ", end = "")
+            if j == mida - 1:
+                print("|")
+            elif i == x and j == y:
+                print("| E ", end = "")
+            elif i != x and j != y:             
                 print(f"| · ", end = "")
-                print("|") 
             else:
-                if i == x and j == y:
-                    print("| E ", end = "")
-                else:
-                    for clau, valors in diccionari.items():
-                        for valor in valors:
-                            if (i, j) == valor:
-                                print(f"| {clau} ", end = "")                    
-                print(f"| · ", end = "")
+                for clau, valors in diccionari.items():
+                    for valor in valors:
+                        if (i, j) == valor:    
+                            print(f"| {clau} ", end = "")
+                            claus = True
+                        else:
+                            claus = False
+                    if not claus:             
+                        print(f"| · ", end = "")
+                           
     print("+---" *mida+ "+")
     print(f"La teva salut és de: {var_globals.jugador_vida} punts de vida.\n")
 
