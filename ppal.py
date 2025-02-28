@@ -25,18 +25,11 @@ def main():
     match nivell:
         case 1:
             print("\nHas escollit el nivell 1: Piece of cake!")
-            mapa.main()
         case 2:
             print("\nHas escollit el nivell 2: Let's rock!")
-            mapa.main()
         case 3:
             print("\nHas escollit el nivell 3: Come get some!")
-            mapa.main()
-    
-    #amplada_mapa = var_globals.mida_mapa(nivell)
-    #print(amplada_mapa)
-    #mapa.imprimir_mapa(amplada_mapa,amplada_mapa)
-    
+    mapa.main()
 
 
 if __name__ == "__main__":

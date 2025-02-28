@@ -17,37 +17,29 @@ def mida_mapa(var_nivell):
     return mida
 
 
-#Funció per generar un diccionari on cada clau és l'element i el valor la quantitat de vegades que apareix en el mapa segons dificultat
-def quantitat_elements(var_nivell):
-    nivells = { # Generem un diccionari, on cada nivell és la clau, i el valor un diccionari amb els elements i la quantitat
-        1: {"E": 1, "A": 2, "T": 2, "R": 2, "L": 4, "B": 2, "C": 1},
-        2: {"E": 1, "A": 10, "T": 10, "R": 6, "L": 14, "B": 10, "C": 3},
-        3: {"E": 1, "A": 18, "T": 25, "R": 16, "L": 20, "B": 25, "C": 5},
-    }
-    return nivells.get(var_nivell, {}) #Ens retornarà només un diccionari segons el nivell, o un diccionari buit
-
-
-# Funció per generar un diccionari amb cada element com a clau i els valors com llistes de tuples amb les posicions
-# Accepta com a paràmetres: mida del mapa, llista amb els elements, diccionari amb quantitat de cada element segons el nivell
-def generar_posicions(mida,ll,diccionari):
-    dic_pos = {}
-    combinacions_possibles = [(x, y) for x in range(mida) for y in range(mida)]
-    random.shuffle(combinacions_possibles)
-    for i in ll:
-        ll_aux = []
-        for j in range(diccionari[i]):
-            ll_aux.append(combinacions_possibles.pop())
-        dic_pos[i]=ll_aux
-    return dic_pos
-
-
 # Funció per generar la visibilitat segons el nivell de dificultat
-
+# Genera una llista amb les coordenades que pot veure l'explorador
+# Paràmetres: mida que fa el mapa i les coordenades del jugador
+def generar_visió(mida,pos_jugador):
+    ll_tuples = []
+    direccions = []
+    match mida:
+        case 5:
+            direccions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, 1), (-1, -1), (1, 1), (1, -1), (-2, 0), (2, 0), (0, 2), (0, -2)]
+        case 10:
+            direccions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, 1), (-1, -1), (1, 1), (1, -1)]
+        case 15:
+            direccions = [(-1, 0), (1, 0), (0, -1), (0, 1)]    
+    x,y = pos_jugador[0], pos_jugador[1]
+    for dx, dy in direccions:
+        nou_dx = (x+dx) % mida
+        nou_dy = (y+dy) % mida
+        ll_tuples.append((nou_dx,nou_dy))
+    return(ll_tuples)
 
 
 #Llista amb tots els elements
 ll_elements = ["E","A","T","R","L","B","C"]
-
 
 
 

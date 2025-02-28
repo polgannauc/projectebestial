@@ -5,8 +5,6 @@ import moviments
 import ppal
 import elements
 
-jugador_x = 2
-jugador_y = 2
 
 def imprimir_mapa(mida,diccionari,x,y):
     matriu = []
@@ -27,15 +25,17 @@ def imprimir_mapa(mida,diccionari,x,y):
                     print(f"| · ", end="")
     print("+---" *mida+ "+")
 
+jugador_x = 2
+jugador_y = 2
 
 
 def main():
     global jugador_x
     global jugador_y
     ll_elements=var_globals.ll_elements
-    amplada = var_globals.mida_mapa(1)
-    dic_q_elements = var_globals.quantitat_elements(1)
-    dic_posicions = var_globals.generar_posicions(amplada,ll_elements,dic_q_elements)
+    amplada = var_globals.mida_mapa(2)
+    dic_q_elements = elements.quantitat_elements(2)
+    dic_posicions = elements.generar_posicions(amplada,ll_elements,dic_q_elements)
 
     imprimir_mapa(amplada,dic_posicions,jugador_x,jugador_y)
 
