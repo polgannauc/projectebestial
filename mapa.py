@@ -5,7 +5,6 @@ import elements
 import moviments
 
 def mapa_parametres(var_nivell):
-    mida = None
     match var_nivell:
         case 1:
             var_globals.mida = 5
@@ -28,6 +27,7 @@ def mapa_parametres(var_nivell):
 def generar_visió(mida,pos_jugador):
     ll_tuples = []
     direccions = []
+
     match mida:
         case 5:
             direccions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, 1), (-1, -1), (1, 1), (1, -1), (-2, 0), (2, 0), (0, 2), (0, -2)]
@@ -45,26 +45,22 @@ def generar_visió(mida,pos_jugador):
 
 def imprimir_mapa(mida,diccionari,x,y):
     var_globals.gameplay = True
-    claus = False
+
     for i in range(mida):
         print("+---" *mida+ "+")
         for j in range(mida):
-            if j == mida - 1:
-                print("|")
-            elif i == x and j == y:
+            if i == x and j == y:
                 print("| E ", end = "")
-            elif i != x and j != y:             
-                print(f"| · ", end = "")
             else:
+                key = False
                 for clau, valors in diccionari.items():
                     for valor in valors:
                         if (i, j) == valor:    
                             print(f"| {clau} ", end = "")
-                            claus = True
-                        else:
-                            claus = False
-                    if not claus:             
-                        print(f"| · ", end = "")
+                            key = True
+                if key == False:
+                    print(f"| · ", end = "")
+        print("|")
                            
     print("+---" *mida+ "+")
     print(f"La teva salut és de: {var_globals.jugador_vida} punts de vida.\n")
