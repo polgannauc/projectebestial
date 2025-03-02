@@ -1,3 +1,0 @@
-# Proves 
-En aquesta carpeta he estat fent proves, provant funcions i variables, ...
-Bàsicament, no volia anar canviant res dels fitxers principals, i vaig copiar els fitxers en la meva torre i he anat fent.
