@@ -29,6 +29,9 @@ def main():
             print("\nHas escollit el nivell 2: Let's rock!")
         case 3:
             print("\nHas escollit el nivell 3: Come get some!")
+    print("Carregant...")
+    mapa.time.sleep(1.5)
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     mapa.main()
 
 

@@ -6,9 +6,7 @@ gameplay = False
 level = 0
 jugador_x = 0
 jugador_y = 0
-#animal_x = 1
-#animal_y = 1
-jugador_vida = 0
+jugador_vida = 50
 entitats = {}
 mida = 0
 
