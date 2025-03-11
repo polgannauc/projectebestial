@@ -74,24 +74,15 @@ def main():
     ll_elements = var_globals.ll_elements
     mapa_parametres(var_globals.level)
     dic_posicions = elements.generar_posicions(var_globals.mida, ll_elements, var_globals.entitats)
-    
-    # Guardem en una variable la llista amb les posicions del camp de visió
     # Ja pensarem si aquesta llista es guarda en variables globals i l'anem cridant
     camp_visio = generar_visio(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
-    
     # En el mapa han d'entrar les coordenades del camp de visió per imprimir només aquelles dins la llista de la visió
     imprimir_mapa(var_globals.mida,dic_posicions, camp_visio, var_globals.jugador_x, var_globals.jugador_y)
-
+    
     while var_globals.gameplay:
-        old_x, old_y = var_globals.jugador_x, var_globals.jugador_y
-        var_globals.jugador_x, var_globals.jugador_y = moviments.desplaçament(var_globals.mida, var_globals.jugador_x, var_globals.jugador_y)
-        
-        if var_globals.jugador_x != old_x or var_globals.jugador_y != old_y:
-            #El camp de visió es va generant cada vegada que es mou el jugador
-            camp_visio = generar_visio(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
-            
-            imprimir_mapa(var_globals.mida,dic_posicions, camp_visio, var_globals.jugador_x, var_globals.jugador_y)
-            time.sleep(0.4)
+        moviments.desplaçament(var_globals.mida, var_globals.jugador_x, var_globals.jugador_y)
+        camp_visio = generar_visio(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
+        imprimir_mapa(var_globals.mida,dic_posicions, camp_visio, var_globals.jugador_x, var_globals.jugador_y)
 
 if __name__ == "__main__":
     main()
