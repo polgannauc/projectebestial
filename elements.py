@@ -42,6 +42,7 @@ def refugi():
 
 def generar_posicions(mida, ll, diccionari):
     global dic_pos
+    matriu_elements = []
     combinacions_possibles = [(x, y) for x in range(mida) for y in range(mida)]
     random.shuffle(combinacions_possibles)
     pos_jugador = combinacions_possibles.pop()
@@ -52,7 +53,18 @@ def generar_posicions(mida, ll, diccionari):
         for j in range(diccionari[i]):
             ll_aux.append(combinacions_possibles.pop())
         dic_pos[i]=ll_aux
-    return dic_pos
+    dic_pos["·"]= combinacions_possibles
+    for i in range(mida):
+        ll_aux=[]
+        for j in range(mida):
+            for key,value in dic_pos.items():
+                for pos in value:
+                    if pos == (i,j):
+                        ll_aux.append(key)
+        matriu_elements.append(ll_aux)
+    return dic_pos,matriu_elements
+
+
 
 def main():
     return main()

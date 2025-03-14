@@ -2,7 +2,7 @@
 ## Exemple: amplada del mapa o energia inicial
 ## Altres variables que podem posar, com les posicions de l'explorador i dels element
 
-gameplay = False
+gameplay = True
 level = 0
 jugador_x = 0
 jugador_y = 0

@@ -1,6 +1,6 @@
 import var_globals
 import mapa
-
+import time
 
 def set_level(nivell):
     var_globals.level
@@ -30,7 +30,7 @@ def main():
         case 3:
             print("\nHas escollit el nivell 3: Come get some!")
     print("Carregant...")
-    mapa.time.sleep(1.5)
+    time.sleep(1.5)
     print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     mapa.main()
 

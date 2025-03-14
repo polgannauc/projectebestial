@@ -1,6 +1,5 @@
 # Aquest serà el mòdul pel mapa
 import var_globals
-import time
 import elements
 import moviments
 
@@ -27,7 +26,6 @@ def mapa_parametres(var_nivell):
 def generar_visio(mida,x,y):
     ll_tuples = []
     direccions = []
-
     match mida:
         case 5:
             direccions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, 1), (-1, -1), (1, 1), (1, -1), (-2, 0), (2, 0), (0, 2), (0, -2)]
@@ -43,8 +41,6 @@ def generar_visio(mida,x,y):
 
 
 def imprimir_mapa(mida,diccionari,visio,x,y):
-    var_globals.gameplay = True
-
     for i in range(mida):
         print("+---" *mida+ "+")
         for j in range(mida):
@@ -69,20 +65,24 @@ def imprimir_mapa(mida,diccionari,visio,x,y):
     print(f"La teva salut és de: {var_globals.jugador_vida} punts de vida.\n")
 
 
+# Faré un altre mapa per provar i no canviar l'anterior
+def mapa_destapat(mida, mapa_destapat,visio, x, y):
+    for fila in mapa_destapat:
+        print(*fila)
+
+
 
 def main():
     ll_elements = var_globals.ll_elements
     mapa_parametres(var_globals.level)
-    dic_posicions = elements.generar_posicions(var_globals.mida, ll_elements, var_globals.entitats)
-    # Ja pensarem si aquesta llista es guarda en variables globals i l'anem cridant
-    camp_visio = generar_visio(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
-    # En el mapa han d'entrar les coordenades del camp de visió per imprimir només aquelles dins la llista de la visió
-    imprimir_mapa(var_globals.mida,dic_posicions, camp_visio, var_globals.jugador_x, var_globals.jugador_y)
+    # dic_posicions = elements.generar_posicions(var_globals.mida, ll_elements, var_globals.entitats)
+    dic_posicions, elements_destapats = elements.generar_posicions(var_globals.mida, ll_elements, var_globals.entitats)
     
     while var_globals.gameplay:
-        moviments.desplaçament(var_globals.mida, var_globals.jugador_x, var_globals.jugador_y)
         camp_visio = generar_visio(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
-        imprimir_mapa(var_globals.mida,dic_posicions, camp_visio, var_globals.jugador_x, var_globals.jugador_y)
+        # imprimir_mapa(var_globals.mida,dic_posicions, camp_visio, var_globals.jugador_x, var_globals.jugador_y)
+        mapa_destapat(var_globals.mida,elements_destapats,camp_visio,var_globals.jugador_x, var_globals.jugador_y)
+        moviments.desplaçament()
 
 if __name__ == "__main__":
     main()
