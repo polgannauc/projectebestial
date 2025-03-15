@@ -3,28 +3,21 @@
 import var_globals
 
 
+# Funcíó per desplaçar l'explorador en el mapa
 def desplaçament():
     entrada = input("cap on vols anar?(w, a, s ,d) ")
     match entrada:
         case "w":
-            var_globals.jugador_x -= 1
-            if var_globals.jugador_x == -1:
-                var_globals.jugador_x = var_globals.mida - 1
+            # Calular el mòdul de la posició del jugador amb la mida del mapa resulta amb esfericitat en el mapa
+            var_globals.jugador_x = (var_globals.jugador_x-1) % var_globals.mida 
         case "s":
-            var_globals.jugador_x += 1
-            if var_globals.jugador_x == var_globals.mida:
-                var_globals.jugador_x = 0
+            var_globals.jugador_x = (var_globals.jugador_x+1) % var_globals.mida
         case "a":
-            var_globals.jugador_y -= 1
-            if var_globals.jugador_y == -1:
-                var_globals.jugador_y = var_globals.mida - 1
+            var_globals.jugador_y = (var_globals.jugador_y-1) % var_globals.mida
         case "d":
-            var_globals.jugador_y += 1
-            if var_globals.jugador_y == var_globals.mida:
-                var_globals.jugador_y = 0
+            var_globals.jugador_y = (var_globals.jugador_y+1) % var_globals.mida
         case "q":
             var_globals.gameplay = False
             print("Sortint del joc...\nGràcies per jugar!!\n")
         case _:
-            var_globals.jugador_x == var_globals.jugador_x
-            var_globals.jugador_y == var_globals.jugador_y
+            pass

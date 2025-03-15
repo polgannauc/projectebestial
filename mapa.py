@@ -40,6 +40,7 @@ def generar_visio(mida,x,y):
     return ll_tuples
 
 
+# Mapa que imprimeix la clau (element) del diccionari comparant el valor (coordenades)
 def imprimir_mapa(mida,diccionari,visio,x,y):
     for i in range(mida):
         print("+---" *mida+ "+")
@@ -65,10 +66,20 @@ def imprimir_mapa(mida,diccionari,visio,x,y):
     print(f"La teva salut és de: {var_globals.jugador_vida} punts de vida.\n")
 
 
-# Faré un altre mapa per provar i no canviar l'anterior
-def mapa_destapat(mida, mapa_destapat,visio, x, y):
-    for fila in mapa_destapat:
-        print(*fila)
+# Mapa que imprimeix els elements comparant-los amb un mapa destapat (matriu amb les lletres)
+def mapa_tapat(mida, mapa_destapat,visio, x, y):
+    for i in range(mida):
+        print("+---" *mida+ "+")
+        for j in range(mida):
+            if (i,j)==(x,y):
+                print(f"| E ", end ="")
+            elif (i,j) in visio:
+                print(f"| {"." if mapa_destapat[i][j] == "E" else mapa_destapat[i][j]} ", end = "") # If i else en una mateixa línia 
+            else:
+                print("| X ", end ="")
+        print("|")
+    print("+---" *mida+ "+")
+    print(f"La teva salut és de: {var_globals.jugador_vida} punts de vida.\n")
 
 
 
@@ -77,11 +88,11 @@ def main():
     mapa_parametres(var_globals.level)
     # dic_posicions = elements.generar_posicions(var_globals.mida, ll_elements, var_globals.entitats)
     dic_posicions, elements_destapats = elements.generar_posicions(var_globals.mida, ll_elements, var_globals.entitats)
-    
+
     while var_globals.gameplay:
         camp_visio = generar_visio(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
         # imprimir_mapa(var_globals.mida,dic_posicions, camp_visio, var_globals.jugador_x, var_globals.jugador_y)
-        mapa_destapat(var_globals.mida,elements_destapats,camp_visio,var_globals.jugador_x, var_globals.jugador_y)
+        mapa_tapat(var_globals.mida,elements_destapats,camp_visio,var_globals.jugador_x, var_globals.jugador_y)
         moviments.desplaçament()
 
 if __name__ == "__main__":

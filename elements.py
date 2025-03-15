@@ -48,12 +48,13 @@ def generar_posicions(mida, ll, diccionari):
     pos_jugador = combinacions_possibles.pop()
     var_globals.jugador_x = pos_jugador[0]
     var_globals.jugador_y = pos_jugador[1]
+    dic_pos["E"]=[pos_jugador]
     for i in ll:
         ll_aux = []
         for j in range(diccionari[i]):
             ll_aux.append(combinacions_possibles.pop())
         dic_pos[i]=ll_aux
-    dic_pos["·"]= combinacions_possibles
+        dic_pos["·"]= combinacions_possibles
     for i in range(mida):
         ll_aux=[]
         for j in range(mida):
