@@ -17,7 +17,6 @@ def mapa_parametres(var_nivell):
             var_globals.mida = 15
             var_globals.entitats = {"E": 1, "A": 18, "T": 25, "R": 16, "L": 20, "B": 25, "C": 5}
             var_globals.jugador_vida = 25
-    return var_globals.mida, var_globals.entitats, var_globals.jugador_vida
 
 
 # Funció per generar la visibilitat segons el nivell de dificultat
@@ -40,31 +39,6 @@ def generar_visio(mida,x,y):
     return ll_tuples
 
 
-# Mapa que imprimeix la clau (element) del diccionari comparant el valor (coordenades)
-def imprimir_mapa(mida,diccionari,visio,x,y):
-    for i in range(mida):
-        print("+---" *mida+ "+")
-        for j in range(mida):
-            if i == x and j == y:
-                print("| E ", end = "")
-            else:
-                key = False
-                if (i,j) in visio:
-                    for clau, valors in diccionari.items():
-                        for valor in valors:
-                            if (i, j) == valor:    
-                                print(f"| {clau} ", end = "")
-                                key = True
-                    if key == False:
-                        print(f"| · ", end = "")
-                else:
-                    print(f"| X ", end = "")
-        print("|")
-                           
-                               
-    print("+---" *mida+ "+")
-    print(f"La teva salut és de: {var_globals.jugador_vida} punts de vida.\n")
-
 
 # Mapa que imprimeix els elements comparant-los amb un mapa destapat (matriu amb les lletres)
 def mapa_tapat(mida, mapa_destapat,visio, x, y):
@@ -74,7 +48,7 @@ def mapa_tapat(mida, mapa_destapat,visio, x, y):
             if (i,j)==(x,y):
                 print(f"| E ", end ="")
             elif (i,j) in visio:
-                print(f"| {"." if mapa_destapat[i][j] == "E" else mapa_destapat[i][j]} ", end = "") # If i else en una mateixa línia 
+                print(f"| {"·" if mapa_destapat[i][j] == "E" else mapa_destapat[i][j]} ", end = "") # If i else en una mateixa línia 
             else:
                 print("| X ", end ="")
         print("|")
@@ -84,15 +58,12 @@ def mapa_tapat(mida, mapa_destapat,visio, x, y):
 
 
 def main():
-    ll_elements = var_globals.ll_elements
     mapa_parametres(var_globals.level)
-    # dic_posicions = elements.generar_posicions(var_globals.mida, ll_elements, var_globals.entitats)
-    dic_posicions, elements_destapats = elements.generar_posicions(var_globals.mida, ll_elements, var_globals.entitats)
-
+    elements_destapats = elements.generar_posicions(var_globals.mida, var_globals.ll_elements, var_globals.entitats)
     while var_globals.gameplay:
         camp_visio = generar_visio(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
-        # imprimir_mapa(var_globals.mida,dic_posicions, camp_visio, var_globals.jugador_x, var_globals.jugador_y)
         mapa_tapat(var_globals.mida,elements_destapats,camp_visio,var_globals.jugador_x, var_globals.jugador_y)
+        elements_destapats= elements.animal(elements_destapats)
         moviments.desplaçament()
 
 if __name__ == "__main__":

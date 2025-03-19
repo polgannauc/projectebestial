@@ -9,6 +9,7 @@ jugador_y = 0
 jugador_vida = 50
 entitats = {}
 mida = 0
+comptador_animals=0
 
 #Llista amb tots els elements
 ll_elements = ["A","T","R","L","B","C"]

@@ -1,28 +1,49 @@
 import var_globals
 import random
 
-dic_pos = {}
+# Funció per generar un diccionari amb cada element com a clau i els valors com llistes de tuples amb les posicions
+# Accepta com a paràmetres: mida del mapa, llista amb els elements, diccionari amb quantitat de cada element segons el nivell
 
-def animal():
-    if var_globals.level == 1:
-        max_vida = 100
-    elif var_globals.level == 2:
-        max_vida = 50
-    elif var_globals.level == 3:
-        max_vida = 25
+def generar_posicions(mida, ll, diccionari):
+    matriu_elements = []
+    combinacions_possibles = [(x, y) for x in range(mida) for y in range(mida)]
+    random.shuffle(combinacions_possibles)
+    pos_jugador = combinacions_possibles.pop()
+    var_globals.jugador_x, var_globals.jugador_y = pos_jugador
+    dic_pos = {"E": [pos_jugador]}
+    for i in ll:
+        dic_pos[i]=[combinacions_possibles.pop() for j in range(diccionari[i])]
+    dic_pos["·"]= combinacions_possibles
+    for i in range(mida):
+        ll_aux=[]
+        for j in range(mida):
+            for key,value in dic_pos.items():
+                for pos in value:
+                    if pos == (i,j):
+                        ll_aux.append(key)
+        matriu_elements.append(ll_aux)
+    return matriu_elements
 
-    if var_globals.jugador_x and var_globals.jugador_y == var_globals.ll_elements['A']:
-        if var_globals.jugador_vida >= max_vida:
-                var_globals.jugador_vida = max_vida
-        elif var_globals.jugador_vida < max_vida:
-            match var_globals.level:
-                case 1:
-                    var_globals.jugador_vida += 20
-                case 2:
-                    var_globals.jugador_vida += 15
-                case 3:
-                    var_globals.jugador_vida += 10
 
+def animal(elements):
+    for i in range(var_globals.mida):
+        for j in range(var_globals.mida):
+            if elements[i][j] == "A" and (i,j) == (var_globals.jugador_x,var_globals.jugador_y):
+                match var_globals.level:
+                    case 1:
+                        var_globals.jugador_vida += 20
+                        var_globals.jugador_vida = min(var_globals.jugador_vida, 100)
+                    case 2:
+                        var_globals.jugador_vida += 15
+                        var_globals.jugador_vida = min(var_globals.jugador_vida, 50)
+                    case 3:
+                        var_globals.jugador_vida += 10
+                        var_globals.jugador_vida = min(var_globals.jugador_vida, 25)
+                var_globals.comptador_animals+=1
+                elements[i][j] = "·"
+    return elements
+                
+               
 def llac():
     return llac
 
@@ -37,33 +58,6 @@ def refugi():
 
 
 
-# Funció per generar un diccionari amb cada element com a clau i els valors com llistes de tuples amb les posicions
-# Accepta com a paràmetres: mida del mapa, llista amb els elements, diccionari amb quantitat de cada element segons el nivell
-
-def generar_posicions(mida, ll, diccionari):
-    global dic_pos
-    matriu_elements = []
-    combinacions_possibles = [(x, y) for x in range(mida) for y in range(mida)]
-    random.shuffle(combinacions_possibles)
-    pos_jugador = combinacions_possibles.pop()
-    var_globals.jugador_x = pos_jugador[0]
-    var_globals.jugador_y = pos_jugador[1]
-    dic_pos["E"]=[pos_jugador]
-    for i in ll:
-        ll_aux = []
-        for j in range(diccionari[i]):
-            ll_aux.append(combinacions_possibles.pop())
-        dic_pos[i]=ll_aux
-        dic_pos["·"]= combinacions_possibles
-    for i in range(mida):
-        ll_aux=[]
-        for j in range(mida):
-            for key,value in dic_pos.items():
-                for pos in value:
-                    if pos == (i,j):
-                        ll_aux.append(key)
-        matriu_elements.append(ll_aux)
-    return dic_pos,matriu_elements
 
 
 
