@@ -64,6 +64,7 @@ def main():
         camp_visio = generar_visio(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
         mapa_tapat(var_globals.mida,elements_destapats,camp_visio,var_globals.jugador_x, var_globals.jugador_y)
         elements_destapats= elements.animal(elements_destapats)
+        elements_destapats= elements.trampa(elements_destapats)
         moviments.desplaçament()
 
 if __name__ == "__main__":
