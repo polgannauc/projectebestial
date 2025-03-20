@@ -60,12 +60,23 @@ def mapa_tapat(mida, mapa_destapat,visio, x, y):
 def main():
     mapa_parametres(var_globals.level)
     elements_destapats = elements.generar_posicions(var_globals.mida, var_globals.ll_elements, var_globals.entitats)
+   
+    if var_globals.jugador_vida<=0:
+        var_globals.gameplay= False
+        print("Has perdut")
+    
     while var_globals.gameplay:
         camp_visio = generar_visio(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
         mapa_tapat(var_globals.mida,elements_destapats,camp_visio,var_globals.jugador_x, var_globals.jugador_y)
         elements_destapats= elements.animal(elements_destapats)
+        elements_destapats= elements.llac(elements_destapats)
+        elements_destapats= elements.refugi(elements_destapats)
         elements_destapats= elements.trampa(elements_destapats)
+        elements_destapats= elements.rei(elements_destapats)
+
         moviments.desplaçament()
+    
+    
 
 if __name__ == "__main__":
     main()

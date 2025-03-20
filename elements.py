@@ -57,15 +57,58 @@ def trampa(elements):
                         var_globals.jugador_vida -= 30
                 elements[i][j] = "·"
     return elements
-               
-def llac():
-    return llac
 
-def rei():
-    return rei
 
-def refugi():
-    return refugi
+def llac(elements):
+    for i in range(var_globals.mida):
+        for j in range(var_globals.mida):
+            if elements[i][j] == "L" and (i,j) == (var_globals.jugador_x,var_globals.jugador_y):
+                match var_globals.level:
+                    case 1:
+                        var_globals.jugador_vida += 5
+                        var_globals.jugador_vida = min(var_globals.jugador_vida, 100)
+                    case 2:
+                        var_globals.jugador_vida += 5
+                        var_globals.jugador_vida = min(var_globals.jugador_vida, 50)
+                    case 3:
+                        var_globals.jugador_vida += 2
+                        var_globals.jugador_vida = min(var_globals.jugador_vida, 25)
+                elements[i][j] = "·"
+    return elements
+
+def refugi(elements):
+    for i in range(var_globals.mida):
+        for j in range(var_globals.mida):
+            if elements[i][j] == "R" and (i,j) == (var_globals.jugador_x,var_globals.jugador_y):
+                match var_globals.level:
+                    case 1:
+                        var_globals.jugador_vida += 100
+                        var_globals.jugador_vida = min(var_globals.jugador_vida, 100)
+                    case 2:
+                        var_globals.jugador_vida += 50
+                        var_globals.jugador_vida = min(var_globals.jugador_vida, 50)
+                    case 3:
+                        var_globals.jugador_vida += 25
+                        var_globals.jugador_vida = min(var_globals.jugador_vida, 25)
+                elements[i][j] = "·"
+    return elements
+
+
+
+def rei(elements):
+    for i in range(var_globals.mida):
+        for j in range(var_globals.mida):
+            if elements[i][j] == "C" and (i,j) == (var_globals.jugador_x,var_globals.jugador_y):
+                match var_globals.level:
+                    case 1:
+                        var_globals.jugador_vida -= 30
+                    case 2:
+                        var_globals.jugador_vida -= 40
+                    case 3:
+                        var_globals.jugador_vida -= 50
+                elements[i][j] = "·"
+    return elements
+
 
 
 
