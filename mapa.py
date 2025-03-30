@@ -61,10 +61,7 @@ def main():
     mapa_parametres(var_globals.level)
     elements_destapats = elements.generar_posicions(var_globals.mida, var_globals.ll_elements, var_globals.entitats)
    
-    if var_globals.jugador_vida<=0:
-        var_globals.gameplay= False
-        print("Has perdut")
-    
+
     while var_globals.gameplay:
         camp_visio = generar_visio(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
         mapa_tapat(var_globals.mida,elements_destapats,camp_visio,var_globals.jugador_x, var_globals.jugador_y)
@@ -74,6 +71,24 @@ def main():
         elements_destapats= elements.trampa(elements_destapats)
         elements_destapats= elements.rei(elements_destapats)
 
+        if var_globals.jugador_vida<=0:
+            var_globals.gameplay= False
+            print("Has perdut")
+        else:    
+            match var_globals.level:
+                case 1:
+                    if var_globals.comptador_animals==2:
+                        print("Has guanyat")
+                        var_globals.gameplay = False
+                case 2:
+                    if var_globals.comptador_animals==10:
+                        print("Has guanyat")
+                        var_globals.gameplay = False
+                case 3:
+                    if var_globals.comptador_animals==18:
+                        print("Has guanyat")
+                        var_globals.gameplay = False
+        
         moviments.desplaçament()
     
     

@@ -43,22 +43,6 @@ def animal(elements):
                 elements[i][j] = "·"
     return elements
                 
-
-def trampa(elements):
-    for i in range(var_globals.mida):
-        for j in range(var_globals.mida):
-            if elements[i][j] == "T" and (i,j) == (var_globals.jugador_x,var_globals.jugador_y):
-                match var_globals.level:
-                    case 1:
-                        var_globals.jugador_vida -= 20
-                    case 2:
-                        var_globals.jugador_vida -= 25
-                    case 3:
-                        var_globals.jugador_vida -= 30
-                elements[i][j] = "·"
-    return elements
-
-
 def llac(elements):
     for i in range(var_globals.mida):
         for j in range(var_globals.mida):
@@ -92,6 +76,22 @@ def refugi(elements):
                         var_globals.jugador_vida = min(var_globals.jugador_vida, 25)
                 elements[i][j] = "·"
     return elements
+
+def trampa(elements):
+    for i in range(var_globals.mida):
+        for j in range(var_globals.mida):
+            if elements[i][j] == "T" and (i,j) == (var_globals.jugador_x,var_globals.jugador_y):
+                match var_globals.level:
+                    case 1:
+                        var_globals.jugador_vida -= 20
+                    case 2:
+                        var_globals.jugador_vida -= 25
+                    case 3:
+                        var_globals.jugador_vida -= 30
+                elements[i][j] = "·"
+    return elements
+
+
 
 
 
