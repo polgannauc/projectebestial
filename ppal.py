@@ -1,6 +1,7 @@
 import var_globals
 import mapa
 import time
+import sys
 
 def set_level(nivell):
     var_globals.level
@@ -10,16 +11,23 @@ def get_level():
     return var_globals.level
 
 def main():
-    print("Benvingut/uda al nostre joc")
-    print("\nQuin nivell vols triar?")
-    print("\n\tNivell 1: Piece of cake!")
-    print("\n\tNivell 2: Let's rock!")
-    print("\n\tNivell 3: Come get some!")
-
     dificultat = get_level()
+    seguir = False
 
-    while dificultat not in [1,2,3]:
-        dificultat = int(input("\nEscull nivell: "))
+    while not seguir:
+        try:
+            while dificultat not in [1, 2, 3]:
+                print("Benvingut/uda al nostre joc")
+                print("\nQuin nivell vols triar?")
+                print("\n\tNivell 1: Piece of cake!")
+                print("\n\tNivell 2: Let's rock!")
+                print("\n\tNivell 3: Come get some!")
+                dificultat = int(input("\nEscull nivell: "))
+                seguir = False
+            if dificultat in [1, 2, 3]:
+                seguir = True
+        except(ValueError):
+            seguir = False
 
     set_level(dificultat)
     match dificultat:
