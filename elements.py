@@ -25,94 +25,51 @@ def generar_posicions(mida, ll, diccionari):
     return matriu_elements
 
 
-def animal(elements):
-    for i in range(var_globals.mida):
-        for j in range(var_globals.mida):
-            if elements[i][j] == "A" and (i,j) == (var_globals.jugador_x,var_globals.jugador_y):
-                match var_globals.level:
-                    case 1:
-                        var_globals.jugador_vida += 20
-                        var_globals.jugador_vida = min(var_globals.jugador_vida, 100)
-                    case 2:
-                        var_globals.jugador_vida += 15
-                        var_globals.jugador_vida = min(var_globals.jugador_vida, 50)
-                    case 3:
-                        var_globals.jugador_vida += 10
-                        var_globals.jugador_vida = min(var_globals.jugador_vida, 25)
-                var_globals.comptador_animals+=1
-                elements[i][j] = "·"
-    return elements
-                
-def llac(elements):
-    for i in range(var_globals.mida):
-        for j in range(var_globals.mida):
-            if elements[i][j] == "L" and (i,j) == (var_globals.jugador_x,var_globals.jugador_y):
-                match var_globals.level:
-                    case 1:
-                        var_globals.jugador_vida += 5
-                        var_globals.jugador_vida = min(var_globals.jugador_vida, 100)
-                    case 2:
-                        var_globals.jugador_vida += 5
-                        var_globals.jugador_vida = min(var_globals.jugador_vida, 50)
-                    case 3:
-                        var_globals.jugador_vida += 2
-                        var_globals.jugador_vida = min(var_globals.jugador_vida, 25)
-                elements[i][j] = "·"
-    return elements
+def guanyar_vida(elements):
+    x,y = var_globals.jugador_x, var_globals.jugador_y
+    simbol = elements[x][y]
 
-def refugi(elements):
-    for i in range(var_globals.mida):
-        for j in range(var_globals.mida):
-            if elements[i][j] == "R" and (i,j) == (var_globals.jugador_x,var_globals.jugador_y):
-                match var_globals.level:
-                    case 1:
-                        var_globals.jugador_vida += 100
-                        var_globals.jugador_vida = min(var_globals.jugador_vida, 100)
-                    case 2:
-                        var_globals.jugador_vida += 50
-                        var_globals.jugador_vida = min(var_globals.jugador_vida, 50)
-                    case 3:
-                        var_globals.jugador_vida += 25
-                        var_globals.jugador_vida = min(var_globals.jugador_vida, 25)
-                elements[i][j] = "·"
-    return elements
+    # Clau = nivell, valor = diccionari (clau = element, valor = vida que guanya)
+    cures = {
+        1: {"A": 20, "L": 5, "R": 100},
+        2: {"A": 15, "L": 5, "R": 50},
+        3: {"A": 10, "L": 2, "R": 25}
+    }
+    
+    #Diccionari per la vida màxima segons el nivell
+    vida_maxima = {1:100, 2:50, 3:25}
 
-def trampa(elements):
-    for i in range(var_globals.mida):
-        for j in range(var_globals.mida):
-            if elements[i][j] == "T" and (i,j) == (var_globals.jugador_x,var_globals.jugador_y):
-                match var_globals.level:
-                    case 1:
-                        var_globals.jugador_vida -= 20
-                    case 2:
-                        var_globals.jugador_vida -= 25
-                    case 3:
-                        var_globals.jugador_vida -= 30
-                elements[i][j] = "·"
+    if simbol in cures[var_globals.level]:
+        # Entrem al primer diccionari per nivell i al segon per element
+        var_globals.jugador_vida += cures[var_globals.level][simbol]
+
+        # Fem servir la vida màxima
+        var_globals.jugador_vida = min(var_globals.jugador_vida, vida_maxima[var_globals.level])
+
+        if simbol == "A":
+            var_globals.comptador_animals += 1
+
+        # Eliminem l'element del mapa
+        elements[x][y] = "·"
     return elements
 
 
+def perdre_vida(elements):
+    x, y = var_globals.jugador_x, var_globals.jugador_y
+    simbol = elements[x][y]
 
-
-
-def rei(elements):
-    for i in range(var_globals.mida):
-        for j in range(var_globals.mida):
-            if elements[i][j] == "C" and (i,j) == (var_globals.jugador_x,var_globals.jugador_y):
-                match var_globals.level:
-                    case 1:
-                        var_globals.jugador_vida -= 30
-                    case 2:
-                        var_globals.jugador_vida -= 40
-                    case 3:
-                        var_globals.jugador_vida -= 50
-                elements[i][j] = "·"
+    # Clau = nivell, valor = diccionari (clau = element, valor = vida que perd)   
+    danys = {
+        1: {"T": 20, "C": 30},
+        2: {"T": 25, "C": 40},
+        3: {"T": 30, "C": 50}
+    }
+    
+    if simbol in danys[var_globals.level]:
+        var_globals.jugador_vida -= danys[var_globals.level][simbol]
+        elements[x][y] = '·'
+    
     return elements
-
-
-
-
-
 
 
 def main():

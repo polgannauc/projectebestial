@@ -48,7 +48,7 @@ def mapa_tapat(mida, mapa_destapat,visio, x, y):
             if (i,j)==(x,y):
                 print(f"| E ", end ="")
             elif (i,j) in visio:
-                print(f"| {"·" if mapa_destapat[i][j] == "E" else mapa_destapat[i][j]} ", end = "") # If i else en una mateixa línia 
+                print(f"| {'·' if mapa_destapat[i][j] == 'E' else mapa_destapat[i][j]} ", end = "") # If i else en una mateixa línia 
             else:
                 print("| X ", end ="")
         print("|")
@@ -65,11 +65,11 @@ def main():
     while var_globals.gameplay:
         camp_visio = generar_visio(var_globals.mida,var_globals.jugador_x,var_globals.jugador_y)
         mapa_tapat(var_globals.mida,elements_destapats,camp_visio,var_globals.jugador_x, var_globals.jugador_y)
-        elements_destapats= elements.animal(elements_destapats)
-        elements_destapats= elements.llac(elements_destapats)
-        elements_destapats= elements.refugi(elements_destapats)
-        elements_destapats= elements.trampa(elements_destapats)
-        elements_destapats= elements.rei(elements_destapats)
+
+
+        elements_destapats = moviments.desplaçament(elements_destapats)
+        elements_destapats = elements.guanyar_vida(elements_destapats)
+        elements_destapats = elements.perdre_vida(elements_destapats)
 
         if var_globals.jugador_vida<=0:
             var_globals.gameplay= False
@@ -84,12 +84,11 @@ def main():
                     if var_globals.comptador_animals==10:
                         print("Has guanyat")
                         var_globals.gameplay = False
+
                 case 3:
                     if var_globals.comptador_animals==18:
                         print("Has guanyat")
                         var_globals.gameplay = False
-        
-        moviments.desplaçament()
     
     
 
