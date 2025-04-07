@@ -1,18 +1,20 @@
+# Mòdul per establir els elementes i les seves regles
+
 import var_globals
 import random
 
 # Funció per generar un diccionari amb cada element com a clau i els valors com llistes de tuples amb les posicions
 # Accepta com a paràmetres: mida del mapa, llista amb els elements, diccionari amb quantitat de cada element segons el nivell
 
-def generar_posicions(mida, ll, diccionari):
+def generar_posicions(mida, dicc_elements):
     matriu_elements = []
     combinacions_possibles = [(x, y) for x in range(mida) for y in range(mida)]
     random.shuffle(combinacions_possibles)
     pos_jugador = combinacions_possibles.pop()
     var_globals.jugador_x, var_globals.jugador_y = pos_jugador
     dic_pos = {"E": [pos_jugador]}
-    for i in ll:
-        dic_pos[i]=[combinacions_possibles.pop() for j in range(diccionari[i])]
+    for i in ["A","T","R","L","B","C"]:
+        dic_pos[i]=[combinacions_possibles.pop() for j in range(dicc_elements[i])]
     dic_pos["·"]= combinacions_possibles
     for i in range(mida):
         ll_aux=[]
@@ -70,11 +72,3 @@ def perdre_vida(elements):
         elements[x][y] = '·'
     
     return elements
-
-
-def main():
-    return main()
-
-
-if __name__ == "__main__":
-    main()

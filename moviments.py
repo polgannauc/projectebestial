@@ -1,11 +1,9 @@
-# S'implementen les regles del moviment de l'explorador
-
+# Mòdul per establir el desplaçament del jugador
 import var_globals
-
 
 # Funcíó per desplaçar l'explorador en el mapa
 def desplaçament(elements):
-    entrada = input("cap on vols anar?(w, a, s ,d) ")
+    entrada = input("cap on vols anar?(w, a, s ,d, q per sortir): ")
     nou_x, nou_y = var_globals.jugador_x, var_globals.jugador_y
     match entrada:
         case "w":
@@ -25,5 +23,6 @@ def desplaçament(elements):
     if elements[nou_x][nou_y] == "B":
         print("No pots creuar un bosc")
     else:
+        # Nómes s'apliquen els canvis del moviment si la casella no és un bosc
         var_globals.jugador_x, var_globals.jugador_y = nou_x, nou_y
     return elements

@@ -1,17 +1,20 @@
-# En aquest mòdul és on aniran les variables globals
-## Exemple: amplada del mapa o energia inicial
-## Altres variables que podem posar, com les posicions de l'explorador i dels element
+# Mòdul on aniran les variables globals
 
-gameplay = True
+
 level = 0
+
+gameplay = True # Variable de seguir el joc
+
+# Paràmetres inicials segons el nivell
+mida = 0
+entitats = {}
+max_animals = 0
+jugador_vida = 0
+
+# Posició del jugador
 jugador_x = 0
 jugador_y = 0
-jugador_vida = 1
-entitats = {}
-mida = 0
-comptador_animals=0
 
+caselles_destapades = [] # Llista de posicions que l'explorador ja ha visitat
 
-#Llista amb tots els elements
-ll_elements = ["A","T","R","L","B","C"]
-    
+comptador_animals = 0

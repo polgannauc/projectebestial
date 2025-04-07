@@ -1,17 +1,9 @@
 import var_globals
 import mapa
 import time
-import sys
-
-def set_level(nivell):
-    var_globals.level
-    var_globals.level = nivell
-
-def get_level():
-    return var_globals.level
 
 def main():
-    dificultat = get_level()
+    dificultat = None
     seguir = False
 
     while not seguir:
@@ -29,17 +21,29 @@ def main():
         except(ValueError):
             seguir = False
 
-    set_level(dificultat)
+    var_globals.level = dificultat
     match dificultat:
         case 1:
             print("\nHas escollit el nivell 1: Piece of cake!")
+            var_globals.mida = 5
+            var_globals.entitats = {"E": 1, "A": 2, "T": 2, "R": 2, "L": 4, "B": 2, "C": 1}
+            var_globals.jugador_vida = 100
+            var_globals.max_animals = 2
         case 2:
             print("\nHas escollit el nivell 2: Let's rock!")
+            var_globals.mida = 10
+            var_globals.entitats = {"E": 1, "A": 10, "T": 10, "R": 6, "L": 14, "B": 10, "C": 3}
+            var_globals.jugador_vida = 50
+            var_globals.max_animals = 10
         case 3:
             print("\nHas escollit el nivell 3: Come get some!")
+            var_globals.mida = 15
+            var_globals.entitats = {"E": 1, "A": 18, "T": 25, "R": 16, "L": 20, "B": 25, "C": 5}
+            var_globals.jugador_vida = 25
+            var_globals.max_animals = 18
     print("Carregant...")
     time.sleep(1.5)
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+    print("\n" * 30)
     mapa.main()
 
 
