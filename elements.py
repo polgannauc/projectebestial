@@ -65,7 +65,9 @@ def modificar_vida(elements):
         elements[x][y] = "·"  # Eliminem l'element del mapa
 
     if simbol in danys[var_globals.level]:
+       # Entrem al primer diccionari per nivell i al segon per element per escollir el valor de vida que perd
        var_globals.jugador_vida -= danys[var_globals.level][simbol]
+       
        elements[x][y] = '·' # Eliminem l'element del mapa
     
     return elements
