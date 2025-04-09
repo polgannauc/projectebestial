@@ -1,13 +1,13 @@
 # Mòdul per establir el desplaçament del jugador
 import var_globals
 
-# Funcíó per desplaçar l'explorador en el mapa
-def desplaçament(elements):
-    entrada = input("cap on vols anar?(w, a, s ,d, q per sortir): ")
+
+def desplaçament_jugador(elements):
+    entrada = input("Cap on vols anar? (w, a, s, d, q per sortir): ")
     nou_x, nou_y = var_globals.jugador_x, var_globals.jugador_y
     match entrada:
         case "w":
-            # Calular el mòdul de la posició del jugador amb la mida del mapa resulta amb esfericitat en el mapa
+            # Calular el mòdul de la posició del jugador amb la mida del mapa resulta en un map esfèric
             nou_x = (var_globals.jugador_x-1) % var_globals.mida 
         case "s":
             nou_x = (var_globals.jugador_x+1) % var_globals.mida
@@ -20,9 +20,8 @@ def desplaçament(elements):
             print("Sortint del joc...\nGràcies per jugar!!\n")
         case _:
             pass
-    if elements[nou_x][nou_y] == "B":
-        print("No pots creuar un bosc")
-    else:
-        # Nómes s'apliquen els canvis del moviment si la casella no és un bosc
-        var_globals.jugador_x, var_globals.jugador_y = nou_x, nou_y
+    if elements[nou_x][nou_y] == "B":  # Si és un bosc, no passa res
+        print("\nNo pots creuar un bosc")
+    else: # Nómes s'apliquen els canvis del moviment si la casella no és un bosc
+        var_globals.jugador_x, var_globals.jugador_y = nou_x, nou_y  
     return elements

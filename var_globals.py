@@ -1,6 +1,5 @@
 # Mòdul on aniran les variables globals
 
-
 level = 0
 
 gameplay = True # Variable de seguir el joc
