@@ -35,6 +35,7 @@ def mapa_tapat(mida, mapa_destapat,camp_visio, x, y):
         print("|")
     print("+---" *mida+ "+")
     print(f"La teva salut és de: {var_globals.jugador_vida} punts de vida.\n")
+    print(f"Has fotografiat {var_globals.comptador_animals} animals, te'n falten {var_globals.max_animals - var_globals.comptador_animals}.\n")
 
 
 
