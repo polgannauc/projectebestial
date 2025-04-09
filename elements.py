@@ -32,7 +32,7 @@ def generar_posicions(mida, dicc_elements):
     return matriu_elements
 
 
-def guanyar_vida(elements):
+def modificar_vida(elements):
     x,y = var_globals.jugador_x, var_globals.jugador_y
     simbol = elements[x][y]
 
@@ -41,6 +41,12 @@ def guanyar_vida(elements):
         1: {"A": 20, "L": 5, "R": 100},
         2: {"A": 15, "L": 5, "R": 50},
         3: {"A": 10, "L": 2, "R": 25}
+    }
+
+    danys = {
+        1: {"T": 20, "C": 30},
+        2: {"T": 25, "C": 40},
+        3: {"T": 30, "C": 50}
     }
     
     #Diccionari per escollir la vida màxima segons el nivell
@@ -57,22 +63,9 @@ def guanyar_vida(elements):
             var_globals.comptador_animals += 1 # Comptador dels animals
 
         elements[x][y] = "·"  # Eliminem l'element del mapa
-    return elements
 
-
-def perdre_vida(elements):
-    x, y = var_globals.jugador_x, var_globals.jugador_y
-    simbol = elements[x][y]
-
-    # Clau = nivell, valor = diccionari (clau = element, valor = vida que perd)   
-    danys = {
-        1: {"T": 20, "C": 30},
-        2: {"T": 25, "C": 40},
-        3: {"T": 30, "C": 50}
-    }
-    
     if simbol in danys[var_globals.level]:
-        var_globals.jugador_vida -= danys[var_globals.level][simbol]
-        elements[x][y] = '·' # Eliminem l'element del mapa
+       var_globals.jugador_vida -= danys[var_globals.level][simbol]
+       elements[x][y] = '·' # Eliminem l'element del mapa
     
     return elements

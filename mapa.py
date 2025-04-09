@@ -47,8 +47,7 @@ def main():
         mapa_tapat(var_globals.mida,elements_destapats,camp_visio,var_globals.jugador_x, var_globals.jugador_y)
 
         elements_destapats = moviments.desplaçament_jugador(elements_destapats)
-        elements_destapats = elements.guanyar_vida(elements_destapats)
-        elements_destapats = elements.perdre_vida(elements_destapats)
+        elements_destapats = elements.modificar_vida(elements_destapats)
 
         if var_globals.jugador_vida<=0:
             var_globals.gameplay= False
