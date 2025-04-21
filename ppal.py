@@ -18,12 +18,12 @@ def main():
             if dificultat in [1, 2, 3]:
                 seguir = True
             else:
-                print("\n\n\n\n\n\n\n\n\n\n\n\n\n\nError: Només són vàlids els nivells 1, 2 i 3.")
+                print("\n*15" + "Error: Només són vàlids els nivells 1, 2 i 3.")
         except ValueError:
             if entrada:
-                print("\n\n\n\n\n\n\n\n\n\n\n\n\n\nError: Has d'introduir un número enter.")
+                print("\n*15" + "Error: Has d'introduir un número enter.")
             else:
-                print("\n\n\n\n\n\n\n\n\n\n\n\n\n\nError: No has introduït res.")
+                print("\n*15" + "Error: No has introduït res.")
 
     var_globals.level = dificultat
 
