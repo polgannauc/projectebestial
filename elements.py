@@ -4,7 +4,6 @@ import var_globals
 import random
 
 
-# Funció que genera una matriu 2d amb els elements situats
 def generar_posicions(mida, dicc_elements):
     combinacions_possibles = [(x, y) for x in range(mida) for y in range(mida)] # Generem totes les posicions possibles segons la mida del mapa
     random.shuffle(combinacions_possibles) # Les barrejem per tenir els elements a l'atzar
@@ -65,9 +64,7 @@ def modificar_vida(elements):
         elements[x][y] = "·"  # Eliminem l'element del mapa
 
     if simbol in danys[var_globals.level]:
-       # Entrem al primer diccionari per nivell i al segon per element per escollir el valor de vida que perd
        var_globals.jugador_vida -= danys[var_globals.level][simbol]
-       
-       elements[x][y] = '·' # Eliminem l'element del mapa
+       elements[x][y] = '·' 
     
     return elements
