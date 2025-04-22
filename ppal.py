@@ -1,6 +1,7 @@
 import var_globals
 import mapa
 import time
+import os
 
 def main():
     seguir = False
@@ -27,22 +28,17 @@ def main():
 
     var_globals.level = dificultat
 
-    parametres_inicials = { # S'escullen els paràmetres inicilas segons el nivell de dificultat fent servir un diccionari
-        1 : {"mida" : 5, "vida" : 100, "max_animals" : 2, "entitats" : {"E": 1, "A": 2, "T": 2, "R": 2, "L": 4, "B": 2, "C": 1}, "missatge": "\nHas escollit el nivell 1: Piece of cake!"},
-        2 : {"mida" : 10, "vida" : 50, "max_animals" : 10, "entitats" : {"E": 1, "A": 10, "T": 10, "R": 6, "L": 14, "B": 10, "C": 3}, "missatge": "\nHas escollit el nivell 2: Let's rock!"},
-        3 : {"mida" : 15, "vida" : 25, "max_animals" : 18, "entitats" : {"E": 1, "A": 18, "T": 25, "R": 16, "L": 20, "B": 25, "C": 5}, "missatge": "\nHas escollit el nivell 3: Come get some!"}
-    }
+    parametres = var_globals.escollir_parametres(dificultat)
+    var_globals.mida = parametres["mida"]
+    var_globals.jugador_vida = parametres["vida"]
+    var_globals.max_animals = parametres["max_animals"]
+    var_globals.entitats = parametres["entitats"]
 
-    var_globals.mida = parametres_inicials[dificultat]["mida"]
-    var_globals.jugador_vida = parametres_inicials[dificultat]["vida"]
-    var_globals.max_animals = parametres_inicials[dificultat]["max_animals"]
-    var_globals.entitats = parametres_inicials[dificultat]["entitats"]
-
-    print(parametres_inicials[dificultat]["missatge"])
+    print(parametres["missatge"])
 
     print("Carregant...")
     time.sleep(1.5)
-    print("\n" * 30)
+    os.system('cls' if os.name == 'nt' else 'clear') # Netejar la terminal. NT és de windows i fa cls. Si es linux, fa clear
     mapa.main()
 
 

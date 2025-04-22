@@ -10,23 +10,19 @@ def generar_posicions(mida, dicc_elements):
 
     pos_jugador = combinacions_possibles.pop() 
     var_globals.jugador_x, var_globals.jugador_y = pos_jugador # Guardem la posició del jugador a variables globals
-    dicc_posicions = {"E": [pos_jugador]}
 
-    for i in ["A","T","R","L","B","C"]:
-        dicc_posicions[i]=[combinacions_possibles.pop() for j in range(dicc_elements[i])] # Afegim les posicions a cada element segon el número d'elements que toca per nivell
+    dicc_posicions = {pos_jugador:"E"} # Clau: coordenada, valor: element
 
-    dicc_posicions["·"]= combinacions_possibles # La resta de posicions són buides.
+    for simbol, quantitat in dicc_elements.items(): # Iterem sobre el diccionari d'elements, guardant l'element i la quantitat de vegades que apareix
+        for _ in range(quantitat):
+            pos = combinacions_possibles.pop()
+            dicc_posicions[pos] = simbol
 
-    # Ara generarem la matriu 2d a partir del diccionari(clau = element, valor = llista posicions)
-    matriu_elements = []
-    for i in range(mida):
-        ll_aux=[]
-        for j in range(mida):
-            for key,value in dicc_posicions.items():
-                for pos in value:
-                    if pos == (i,j):
-                        ll_aux.append(key)
-        matriu_elements.append(ll_aux)
+    for pos in combinacions_possibles:
+        dicc_posicions[pos] = "." # Resta de posicions del mapa buides 
+    
+    # Generem la matriu 2d amb un list comprehension.
+    matriu_elements = [[dicc_posicions[i,j] for j in range(mida)] for i in range(mida)]
     
     return matriu_elements
 
@@ -34,8 +30,9 @@ def generar_posicions(mida, dicc_elements):
 def modificar_vida(elements):
     x,y = var_globals.jugador_x, var_globals.jugador_y
     simbol = elements[x][y]
+    nivell = var_globals.level
 
-    # Clau = nivell, valor = diccionari (clau = element, valor = vida que guanya)
+    # Clau = nivell, valor = diccionari (clau = element, valor = vida)
     cures = {
         1: {"A": 20, "L": 5, "R": 100},
         2: {"A": 15, "L": 5, "R": 50},
@@ -49,22 +46,20 @@ def modificar_vida(elements):
     }
     
     #Diccionari per escollir la vida màxima segons el nivell
-    vida_maxima = {1:100, 2:50, 3:25}
+    vida_maxima = {1:100, 2:50, 3:25}[nivell]
 
-    if simbol in cures[var_globals.level]:
-        # Entrem al primer diccionari per nivell i al segon per element per escollir el valor de vida que guanya
-        var_globals.jugador_vida += cures[var_globals.level][simbol]
+    if simbol in cures[nivell]:
 
-        # Establim la vida màxima
-        var_globals.jugador_vida = min(var_globals.jugador_vida, vida_maxima[var_globals.level])
+        # Establim la vida màxima amb la funció min, que ens retornarà el valor més petit
+        var_globals.jugador_vida = min(var_globals.jugador_vida + cures[nivell][simbol],vida_maxima)
             
         if simbol == "A":
-            var_globals.comptador_animals += 1 # Comptador dels animals
+            var_globals.comptador_animals += 1
 
         elements[x][y] = "·"  # Eliminem l'element del mapa
 
-    if simbol in danys[var_globals.level]:
-       var_globals.jugador_vida -= danys[var_globals.level][simbol]
+    elif simbol in danys[nivell]:
+       var_globals.jugador_vida -= danys[nivell][simbol]
        elements[x][y] = '·' 
     
     return elements

@@ -17,10 +17,10 @@ def desplaçament_jugador(elements):
             nou_y = (var_globals.jugador_y+1) % var_globals.mida
         case "q":
             var_globals.gameplay = False
-            print("Sortint del joc...\nGràcies per jugar!!\n")
+            print("Gràcies per jugar!!")
         case _:
             pass
-    if elements[nou_x][nou_y] == "B":  # Si és un bosc, no passa res
+    if elements[nou_x][nou_y] == "B":  # Si és un bosc, el moviment no s'actualitza
         print("\nNo pots creuar un bosc")
     else: # Nómes s'apliquen els canvis del moviment si la casella no és un bosc
         var_globals.jugador_x, var_globals.jugador_y = nou_x, nou_y  
