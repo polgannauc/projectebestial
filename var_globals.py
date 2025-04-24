@@ -27,3 +27,8 @@ caselles_destapades = set() # Conjunt de les caselles que l'explorador ja ha vis
 comptador_animals = 0
 
 visio_completa = 0 # Implementem una variable nova per controlar la visió de tot el mapa
+
+
+activacio_inventari = False
+
+inventari = {"ampolla" : 2, "ganivet" : True, "encenedor" : True}

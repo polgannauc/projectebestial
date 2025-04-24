@@ -15,7 +15,6 @@ def main():
 
         try:
             dificultat = int(entrada)
-
             if dificultat in [1, 2, 3]:
                 seguir = True
             else:
