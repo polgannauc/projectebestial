@@ -73,14 +73,8 @@ def main():
         else:
             elements_destapats = moviments.desplaçament_jugador(elements_destapats)
         
-        if var_globals.activacio_inventari:
-            elements.mostrar_inventari(var_globals.inventari)
-            eleccio = int(input("\nQuin objecte vols fer servir? "))
-            var_globals.inventari = elements.utilitzar_objecte(eleccio, var_globals.inventari)
-            var_globals.activacio_inventari = False
-        else:
-            elements_destapats = elements.modificar_vida(elements_destapats, var_globals.inventari)
-            elements_destapats = elements.tocar_fada(elements_destapats, var_globals.inventari)
+        elements_destapats = elements.modificar_vida(elements_destapats)
+        elements_destapats = elements.tocar_fada(elements_destapats)
 
         if var_globals.visio_completa > 0: # En cas d'activar-se la fada, en cada torn es va descontant el comptador de visió completa
             var_globals.visio_completa -= 1

@@ -27,7 +27,7 @@ def generar_posicions(mida, dicc_elements):
     return matriu_elements
 
 
-def modificar_vida(elements, dicc_inventari):
+def modificar_vida(elements):
     x,y = var_globals.jugador_x, var_globals.jugador_y
     simbol = elements[x][y]
     nivell = var_globals.level
@@ -75,34 +75,38 @@ def tocar_fada(elements):
     return(elements)
 
 
+# Falta implementar mecanica del inventari i els objecte, però com no se si tindrem temps, ho deixo comentat
+'''
 def mostrar_inventari(dicc_inventari):
-    print("\nTens els següents objectes en l'invetari:")
+    print("\nTens els següents objectes en l'inventari:")
 
+    # Ampolla d'aigua
     if dicc_inventari["ampolla"]==2:
         print("\n\t1.Omplir aigua d'un llac")
     elif dicc_inventari["ampolla"]==1:
-        print("\n\t1.Beure amplla d'aigua")
+        print("\n\t1.Beure ampolla d'aigua")
     else:
-        print("\n\t1.Ja has fer servir l'ampolla")
-
+        print("\n\t1.Ja has fet servir l'ampolla")
+    
+    # Ganivet
     if dicc_inventari["ganivet"]:
         print("\n\t2.Preparar ganivet")
     else:
         print("\n\t2.Ja has fet servir el ganivet")
 
-    if dicc_inventari["encenedor"]:
-        print("\n\t3.Preparar encenedor")
-    else:
-        print("\n\t3.Ja has fet servir l'encenedor")
-
 def utilitzar_objecte(eleccio, dicc_inventari):
+    accio = None
     match eleccio:
         case 1:
-            dicc_inventari["ampolla"] = 1
+            if dicc_inventari["ampolla"] == 1:
+                dicc_inventari["ampolla"] = 0
+                accio = "beure"
+            else:
+                dicc_inventari["ampolla"] = 1
         case 2:
             dicc_inventari["ganivet"] = True
-        case 3:
-            dicc_inventari["encenedor"] = True
-    return dicc_inventari
+            accio = "ganivet"
+    return dicc_inventari, accio
+'''
 
 
