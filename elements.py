@@ -63,3 +63,13 @@ def modificar_vida(elements):
        elements[x][y] = '·' 
     
     return elements
+
+# La regla de la fada només s'implementa en els nivells 2 i 3
+def tocar_fada(elements):
+    x,y = var_globals.jugador_x, var_globals.jugador_y
+    simbol = elements[x][y]
+    if simbol == "F":
+        print("Has trobat una fada! El mapa serà revelat durant 5 torns!")
+        var_globals.visio_completa = 5 # Comptador de visió completa
+        elements[x][y] = "·"  # Eliminem l'element del mapa
+    return(elements)

@@ -19,12 +19,12 @@ def main():
             if dificultat in [1, 2, 3]:
                 seguir = True
             else:
-                print("\n*15" + "Error: Només són vàlids els nivells 1, 2 i 3.")
+                print("\n" * 15 + "Error: Només són vàlids els nivells 1, 2 i 3.")
         except ValueError:
             if entrada:
-                print("\n*15" + "Error: Has d'introduir un número enter.")
+                print("\n" * 15 + "Error: Has d'introduir un número enter.")
             else:
-                print("\n*15" + "Error: No has introduït res.")
+                print("\n" * 15 + "Error: No has introduït res.")
 
     var_globals.level = dificultat
 
@@ -38,7 +38,7 @@ def main():
 
     print("Carregant...")
     time.sleep(1.5)
-    os.system('cls' if os.name == 'nt' else 'clear') # Netejar la terminal. NT és de windows i fa cls. Si es linux, fa clear
+    os.system("cls" if os.name == "nt" else "clear") # Netejar la terminal. NT és de windows i fa cls. Si es linux, fa clear
     mapa.main()
 
 
