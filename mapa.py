@@ -28,15 +28,13 @@ def generar_visio(mida,pos_x,pos_y): # Posicions del jugador
 # Mapa que imprimeix els elements comparant-los amb un mapa destapat (matriu amb les lletres)
 def mapa_tapat(mida, mapa_destapat,camp_visio, x, y):
     
-    # Només s'actualitza el camp de visió si no hi ha visió completa
-    if var_globals.visio_completa == 0:
-        var_globals.caselles_destapades.update(camp_visio)
-
-    # En cas d'haver visió completa, les caselles a mostrar son tot el camp de visió
+    # En cas d'haver visió completa, les caselles a mostrar són tot el camp de visió
     if var_globals.visio_completa > 0:
         caselles_a_mostrar = camp_visio
-    # Si no hi ha visió completa, només es mostresn les caselles destapades que es van guardant en var_globals
+    # Si no hi ha visió completa, només es mostren les caselles destapades que es van guardant en var_globals
     else:
+        # S'actualitza el camp de visió si no hi ha visió completa
+        var_globals.caselles_destapades.update(camp_visio)
         caselles_a_mostrar = var_globals.caselles_destapades
 
     for i in range(mida):
@@ -72,9 +70,27 @@ def main():
             print("Has guanyat!")
         else:
             elements_destapats = moviments.desplaçament_jugador(elements_destapats)
+            elements_destapats = elements.modificar_vida(elements_destapats, var_globals.inventari)
+            elements_destapats = elements.tocar_fada(elements_destapats)
         
-        elements_destapats = elements.modificar_vida(elements_destapats)
-        elements_destapats = elements.tocar_fada(elements_destapats)
+            if var_globals.activacio_inventari: # Entra si s'activa l'inventari
+                seguir = False
+                while not seguir:
+                    elements.mostrar_inventari(var_globals.inventari)
+                    entrada = input("\nQuin objecte vols fer servir: ")
+                    try:
+                        eleccio = int(entrada)
+                        if eleccio in [1, 2, 3]:
+                            seguir = True
+                        else:
+                            print("\n" * 15 + "Error: Només es pot escollir l'ampolla o el ganivet")
+                    except ValueError:
+                        if entrada:
+                            print("\n" * 15 + "Error: Has d'introduir un número per seleccionar l'objecte.")
+                        else:
+                            print("\n" * 15 + "Error: No has introduït res.")
+                elements.utilitzar_objecte(eleccio, var_globals.inventari)
+                var_globals.activacio_inventari = False
 
         if var_globals.visio_completa > 0: # En cas d'activar-se la fada, en cada torn es va descontant el comptador de visió completa
             var_globals.visio_completa -= 1

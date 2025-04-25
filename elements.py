@@ -27,7 +27,7 @@ def generar_posicions(mida, dicc_elements):
     return matriu_elements
 
 
-def modificar_vida(elements):
+def modificar_vida(elements, dicc_inventari):
     x,y = var_globals.jugador_x, var_globals.jugador_y
     simbol = elements[x][y]
     nivell = var_globals.level
@@ -49,18 +49,24 @@ def modificar_vida(elements):
     vida_maxima = {1:100, 2:50, 3:25}[nivell]
 
     if simbol in cures[nivell]:
+        if simbol == "L" and dicc_inventari["ampolla"] == 2: # És un llac i l'ampolla està buida
+            dicc_inventari["ampolla"] = 1 # S'omple l'ampolla
+            print("\nHas omplert l'ampolla al llac!")
+        elif simbol != "L" or dicc_inventari["ampolla"] != 1: # No és un llac o l'ampolla no està plena
+            # Establim la vida màxima amb la funció min, que ens retornarà el valor més petit
+            var_globals.jugador_vida = min(var_globals.jugador_vida + cures[nivell][simbol], vida_maxima)
 
-        # Establim la vida màxima amb la funció min, que ens retornarà el valor més petit
-        var_globals.jugador_vida = min(var_globals.jugador_vida + cures[nivell][simbol],vida_maxima)
-            
         if simbol == "A":
             var_globals.comptador_animals += 1
-
         elements[x][y] = "·"  # Eliminem l'element del mapa
 
     elif simbol in danys[nivell]:
-       var_globals.jugador_vida -= danys[nivell][simbol]
-       elements[x][y] = '·' 
+        if simbol == "T" and dicc_inventari["ganivet"] == 1: # És una trampa i el ganivet està preparat
+            print("\nHas desactivat la trampa amb el ganivet!")
+            dicc_inventari["ganivet"] = 0
+        elif simbol != "T" or dicc_inventari["ganivet"] != 1: # O no és una trampa o el ganivet no està preparat
+            var_globals.jugador_vida -= danys[nivell][simbol]
+        elements[x][y] = '·' 
     
     return elements
 
@@ -69,14 +75,13 @@ def tocar_fada(elements):
     x,y = var_globals.jugador_x, var_globals.jugador_y
     simbol = elements[x][y]
     if simbol == "F":
-        print("Has trobat una fada! El mapa serà revelat durant 5 torns!")
+        print("\nHas trobat una fada! El mapa serà revelat durant 5 torns!")
         var_globals.visio_completa = 5 # Comptador de visió completa
         elements[x][y] = "·"  # Eliminem l'element del mapa
     return(elements)
 
 
 # Falta implementar mecanica del inventari i els objecte, però com no se si tindrem temps, ho deixo comentat
-'''
 def mostrar_inventari(dicc_inventari):
     print("\nTens els següents objectes en l'inventari:")
 
@@ -89,24 +94,37 @@ def mostrar_inventari(dicc_inventari):
         print("\n\t1.Ja has fet servir l'ampolla")
     
     # Ganivet
-    if dicc_inventari["ganivet"]:
+    if dicc_inventari["ganivet"]==2:
         print("\n\t2.Preparar ganivet")
+    elif dicc_inventari["ganivet"]==1:
+        print("\n\t2.El ganivet està preparat")
     else:
         print("\n\t2.Ja has fet servir el ganivet")
+        
+    print("\n\t3.No fer res")
 
 def utilitzar_objecte(eleccio, dicc_inventari):
-    accio = None
+    nivell = var_globals.level
+    vida_maxima = {1: 100, 2: 50, 3: 25}[nivell]
+
     match eleccio:
-        case 1:
-            if dicc_inventari["ampolla"] == 1:
-                dicc_inventari["ampolla"] = 0
-                accio = "beure"
+        case 1:  # Ampolla
+            if dicc_inventari["ampolla"] == 2:
+                print("\nL'ampolla està buida. Omple-la en un llac (L).")
+            elif dicc_inventari["ampolla"] == 1:  # Si està plena, la beus
+                var_globals.jugador_vida = min(var_globals.jugador_vida + 5, vida_maxima)
+                dicc_inventari["ampolla"] = 0  # Ampolla gastada
+                print("\nHas begut l'aigua de l'ampolla i t'has curat 5 punts de vida!")
             else:
-                dicc_inventari["ampolla"] = 1
-        case 2:
-            dicc_inventari["ganivet"] = True
-            accio = "ganivet"
-    return dicc_inventari, accio
-'''
-
-
+                print("\nJa has fet servir l'ampolla.")
+        case 2:  # Ganivet
+            if dicc_inventari["ganivet"] == 2:  # Si està sense preparar, el prepares
+                dicc_inventari["ganivet"] = 1
+                print("\nHas preparat el ganivet. Ara pots desactivar una trampa!")
+            elif dicc_inventari["ganivet"] == 1:
+                print("\nEl ganivet ja està preparat.")
+            else:
+                print("\nJa has fet servir el ganivet.")
+        case 3:
+            pass
+    return dicc_inventari

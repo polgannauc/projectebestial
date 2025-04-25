@@ -3,7 +3,7 @@ import var_globals
 
 
 def desplaçament_jugador(elements):
-    entrada = input("Cap on vols anar? (w, a, s, d) per moure, q per sortir): ")
+    entrada = input("Cap on vols anar? (w, a, s, d) per moure, i per invetari, q per sortir): ")
     nou_x, nou_y = var_globals.jugador_x, var_globals.jugador_y
     match entrada:
         case "w":
@@ -18,6 +18,8 @@ def desplaçament_jugador(elements):
         case "q":
             var_globals.gameplay = False
             print("Gràcies per jugar!!")
+        case "i":
+            var_globals.activacio_inventari = True
         case _:
             pass
     if elements[nou_x][nou_y] == "B":  # Si és un bosc, el moviment no s'actualitza

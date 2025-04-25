@@ -39,7 +39,7 @@ def main():
     time.sleep(1.5)
     os.system("cls" if os.name == "nt" else "clear") # Netejar la terminal. NT és de windows i fa cls. Si es linux, fa clear
     mapa.main()
-
+ 
 
 if __name__ == "__main__":
     main()
