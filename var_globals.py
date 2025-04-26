@@ -31,4 +31,4 @@ visio_completa = 0 # Implementem una variable nova per controlar la visió de to
 
 activacio_inventari = False
 
-inventari = {"ampolla" : 2, "ganivet" : 2}
+inventari = {"ampolla" : 3, "ganivet" : 2}

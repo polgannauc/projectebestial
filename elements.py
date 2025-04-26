@@ -86,7 +86,9 @@ def mostrar_inventari(dicc_inventari):
     print("\nTens els següents objectes en l'inventari:")
 
     # Ampolla d'aigua
-    if dicc_inventari["ampolla"]==2:
+    if dicc_inventari["ampolla"]==3:
+        print("\n\t1.Ampolla buida")
+    elif dicc_inventari["ampolla"]==2:
         print("\n\t1.Omplir aigua d'un llac")
     elif dicc_inventari["ampolla"]==1:
         print("\n\t1.Beure ampolla d'aigua")
@@ -109,8 +111,10 @@ def utilitzar_objecte(eleccio, dicc_inventari):
 
     match eleccio:
         case 1:  # Ampolla
+            if dicc_inventari["ampolla"] == 3:
+                dicc_inventari["ampolla"] = 2
             if dicc_inventari["ampolla"] == 2:
-                print("\nL'ampolla està buida. Omple-la en un llac (L).")
+                print("\nAmpolla preparada per fer servir. Omple-la en un llac (L).")
             elif dicc_inventari["ampolla"] == 1:  # Si està plena, la beus
                 var_globals.jugador_vida = min(var_globals.jugador_vida + 5, vida_maxima)
                 dicc_inventari["ampolla"] = 0  # Ampolla gastada
