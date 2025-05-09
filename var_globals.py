@@ -10,6 +10,8 @@ def escollir_parametres(nivell):
 
 level = 0
 
+guardar = False
+
 gameplay = True # Variable de seguir el joc
 
 # Paràmetres inicials segons el nivell

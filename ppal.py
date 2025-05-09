@@ -11,11 +11,12 @@ def main():
         print("\n\tNivell 1: Piece of cake!")
         print("\n\tNivell 2: Let's rock!")
         print("\n\tNivell 3: Come get some!")
+        print("\n\tCarregar partida guardada (4).")
         entrada = input("\nEscull nivell: ")
 
         try:
             dificultat = int(entrada)
-            if dificultat in [1, 2, 3]:
+            if dificultat in [1, 2, 3, 4]:
                 seguir = True
             else:
                 print("\n" * 15 + "Error: Només són vàlids els nivells 1, 2 i 3.")

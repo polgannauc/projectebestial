@@ -53,6 +53,11 @@ def mapa_tapat(mida, mapa_destapat,camp_visio, x, y):
     print(f"La teva salut és de: {var_globals.jugador_vida} punts de vida.\n")
     print(f"Has fotografiat {var_globals.comptador_animals} animals, te'n falten {var_globals.max_animals - var_globals.comptador_animals}.\n")
 
+def guardar_partida(nivell, jug_x, jug_y, elements, items):
+    with open('guardat.txt', 'w') as f:
+        ll = [str(nivell), "\n", str(jug_x), "\n", str(jug_y), "\n", str(elements), "\n", str(items)]
+        f.writelines(ll)
+
 
 def main():
     elements_destapats = elements.generar_posicions(var_globals.mida, var_globals.entitats)
@@ -94,6 +99,12 @@ def main():
 
         if var_globals.visio_completa > 0: # En cas d'activar-se la fada, en cada torn es va descontant el comptador de visió completa
             var_globals.visio_completa -= 1
+
+        if var_globals.guardar == True:
+            guardar_partida(var_globals.level ,var_globals.jugador_x, var_globals.jugador_y, elements_destapats, var_globals.inventari)
+            var_globals.gameplay = False
+
+
 
 
 if __name__ == "__main__":
