@@ -8,11 +8,23 @@ def escollir_parametres(nivell):
     }
     return parametres_inicials.get(nivell)
 
+
+def guardar_partida(ll_dades):
+    with open('partida.txt', 'w') as f:
+        for valor in ll_dades:
+            f.write(str(valor) + "\n")
+
+def carregar_partida():
+    with open("partida.txt", "r") as f:
+        ll_dades = f.readlines()
+    return ll_dades
+
+
 level = 0
 
-guardar = False
-
 gameplay = True # Variable de seguir el joc
+
+guardar = False # Variable per guardar la partida
 
 # Paràmetres inicials segons el nivell
 mida = 0
