@@ -33,41 +33,34 @@ def modificar_vida(elements, dicc_inventari):
     nivell = var_globals.level
 
     # Clau = nivell, valor = diccionari (clau = element, valor = vida)
-    cures = {
-        1: {"A": 20, "L": 5, "R": 100},
-        2: {"A": 15, "L": 5, "R": 50},
-        3: {"A": 10, "L": 2, "R": 25}
-    }
-
-    danys = {
-        1: {"T": 20, "C": 30},
-        2: {"T": 25, "C": 40},
-        3: {"T": 30, "C": 50}
-    }
+    efectes = {
+            1: {'A': 20, 'L': 5, 'R': 100, 'T': 20, 'C': 30},
+            2: {'A': 15, 'L': 5, 'R': 50,  'T': 25, 'C': 40},
+            3: {'A': 10, 'L': 2, 'R': 25,  'T': 30, 'C': 50}
+            }
     
     #Diccionari per escollir la vida màxima segons el nivell
     vida_maxima = {1:100, 2:50, 3:25}[nivell]
 
-    if simbol in cures[nivell]:
-        if simbol == "L" and dicc_inventari["ampolla"] == 2: # És un llac i l'ampolla està buida
-            dicc_inventari["ampolla"] = 1 # S'omple l'ampolla
-            print("\nHas omplert l'ampolla al llac!")
-        elif simbol != "L" or dicc_inventari["ampolla"] != 1: # No és un llac o l'ampolla no està plena
-            # Establim la vida màxima amb la funció min, que ens retornarà el valor més petit
-            var_globals.jugador_vida = min(var_globals.jugador_vida + cures[nivell][simbol], vida_maxima)
-
-        if simbol == "A":
-            var_globals.comptador_animals += 1
-        elements[x][y] = "·"  # Eliminem l'element del mapa
-
-    elif simbol in danys[nivell]:
-        if simbol == "T" and dicc_inventari["ganivet"] == 1: # És una trampa i el ganivet està preparat
-            print("\nHas desactivat la trampa amb el ganivet!")
-            dicc_inventari["ganivet"] = 0
-        elif simbol != "T" or dicc_inventari["ganivet"] != 1: # O no és una trampa o el ganivet no està preparat
-            var_globals.jugador_vida -= danys[nivell][simbol]
-        elements[x][y] = '·' 
-    
+    if simbol in efectes[nivell]:
+        if simbol in ["A","L","R"]:
+            if simbol == "L" and dicc_inventari["ampolla"] == 2: # És un llac i l'ampolla està buida
+                dicc_inventari["ampolla"] = 1 # S'omple l'ampolla
+                print("\nHas omplert l'ampolla al llac!")
+            elif simbol != "L" or dicc_inventari["ampolla"] != 1: # No és un llac o l'ampolla no està plena
+                # Establim la vida màxima amb la funció min, que ens retornarà el valor més petit
+                var_globals.jugador_vida = min(var_globals.jugador_vida + efectes[nivell][simbol], vida_maxima)
+            if simbol == "A":
+                var_globals.comptador_animals += 1
+        else:
+            if simbol == "T" and dicc_inventari["ganivet"] == 1: # És una trampa i el ganivet està preparat
+                print("\nHas desactivat la trampa amb el ganivet!")
+                dicc_inventari["ganivet"] = 0
+                elements[x][y] = '·'
+            elif simbol != "T" or dicc_inventari["ganivet"] != 1: # O no és una trampa o el ganivet no està preparat
+                var_globals.jugador_vida -= efectes[nivell][simbol]
+        if simbol != "T":
+            elements[x][y] = '·' # Eliminem la resta d'elements excepte la trampa
     return elements
 
 # La regla de la fada només s'implementa en els nivells 2 i 3
