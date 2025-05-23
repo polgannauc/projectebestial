@@ -51,11 +51,8 @@ def main():
     if dificultat != 4:
         var_globals.level = dificultat
         parametres = var_globals.escollir_parametres(dificultat)
-        var_globals.mida = parametres["mida"]
-        var_globals.jugador_vida = parametres["vida"]
-        var_globals.max_animals = parametres["max_animals"]
-        var_globals.entitats = parametres["entitats"]
-    
+        var_globals.mida, var_globals.jugador_vida = parametres["mida"], parametres["vida"]
+        var_globals.max_animals, var_globals.entitats= parametres["max_animals"], parametres["entitats"]
         print(parametres["missatge"])
         elements_destapats = elements.generar_posicions(var_globals.mida, var_globals.entitats)
 
