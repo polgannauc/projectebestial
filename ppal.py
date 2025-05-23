@@ -102,7 +102,7 @@ def main():
             try:
                 dades = [var_globals.level , var_globals.mida, elements_destapats, var_globals.max_animals, var_globals.jugador_vida, var_globals.jugador_x, var_globals.jugador_y, var_globals.caselles_destapades, var_globals.comptador_animals, var_globals.inventari]
                 var_globals.guardar_partida(dades)
-                print("\nLa partida s'ha desat correctmant")
+                print("\nLa partida s'ha desat correctament")
                 var_globals.gameplay = False
             except (IOError, PermissionError) as e: # Capturem errors genèrics d'entrada i sortida i de permisos
                 print(f"\nError en desar la partida: {e}")

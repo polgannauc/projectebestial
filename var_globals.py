@@ -8,7 +8,6 @@ def escollir_parametres(nivell):
     }
     return parametres_inicials.get(nivell)
 
-
 def guardar_partida(ll_dades):
     with open('partida.txt', 'w') as f:
         for valor in ll_dades:
@@ -18,7 +17,6 @@ def carregar_partida():
     with open("partida.txt", "r") as f:
         ll_dades = f.readlines()
     return ll_dades
-
 
 level = 0
 
@@ -41,7 +39,6 @@ caselles_destapades = set() # Conjunt de les caselles que l'explorador ja ha vis
 comptador_animals = 0
 
 visio_completa = 0 # Implementem una variable nova per controlar la visió de tot el mapa
-
 
 activacio_inventari = False
 
