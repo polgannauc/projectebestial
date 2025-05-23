@@ -30,6 +30,13 @@ entitats = {}
 max_animals = 0
 jugador_vida = 0
 
+# Diccionari amb les direccions segons la mida del mapa, per calcular el camp de visió
+dicc_direccions = {
+    5: [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, 1), (-1, -1), (1, 1), (1, -1), (-2, 0), (2, 0), (0, 2), (0, -2)],
+    10: [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, 1), (-1, -1), (1, 1), (1, -1)],
+    15: [(-1, 0), (1, 0), (0, -1), (0, 1)],
+}
+
 # Posició del jugador
 jugador_x = 0
 jugador_y = 0

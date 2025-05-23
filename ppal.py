@@ -63,10 +63,10 @@ def main():
 
         if var_globals.jugador_vida<=0: # Condició derrota
             var_globals.gameplay = False, 
-            print("Has perdut")
+            print("Has perdut") 
         elif var_globals.comptador_animals == var_globals.max_animals: # Condició victòria
             var_globals.gameplay = False
-            print("Has guanyat?")
+            print("Has guanyat!")
         else:
             elements_destapats = moviments.desplaçament_jugador(elements_destapats)
             elements_destapats = elements.modificar_vida(elements_destapats, var_globals.inventari)
